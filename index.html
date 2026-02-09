@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="uz">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Robotronix - Robotlar sizni emas, siz robotlarni boshqaring!
+        </title>
+        <meta
+            name="description"
+            content="Robotronix - Farg'ona va Namangan viloyatlaridagi yetakchi robototexnika markazi. Bolalar va o'qituvchilar uchun robototexnika, dasturlash va elektronika kurslari."
+        />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="assets/images/favicon.svg"
+        />
+
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="assets/css/style.css" />
+
+        <!-- AOS Animation -->
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Preloader -->
+        <div id="preloader" style="opacity: 1">
+            <div class="robot-loader">
+                <div class="robot-head">
+                    <div class="robot-eye left"></div>
+                    <div class="robot-eye right"></div>
+                </div>
+                <div class="loading-text">Yuklanmoqda...</div>
+            </div>
+        </div>
+
+        <!-- Immediate Preloader Handler -->
+        <script>
+            // Hide preloader immediately when DOM is ready
+            document.addEventListener("DOMContentLoaded", function () {
+                const preloader = document.getElementById("preloader");
+                if (preloader) {
+                    setTimeout(function () {
+                        preloader.style.opacity = "0";
+                        setTimeout(function () {
+                            preloader.style.display = "none";
+                        }, 500);
+                    }, 800);
+                }
+            });
+        </script>
+
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="logo">
+                        <img
+                            src="assets/images/logo.svg"
+                            alt="Robotronix"
+                            class="logo-img"
+                        />
+                        <span class="logo-text">Robotronix</span>
+                    </div>
+
+                    <ul class="nav-menu" id="nav-menu">
+                        <li>
+                            <a href="#home" class="nav-link active"
+                                >Bosh sahifa</a
+                            >
+                        </li>
+                        <li><a href="#courses" class="nav-link">Kurslar</a></li>
+                        <li>
+                            <a href="#products" class="nav-link">Mahsulotlar</a>
+                        </li>
+                        <li>
+                            <a href="#about" class="nav-link">Biz haqimizda</a>
+                        </li>
+                        <li><a href="#contact" class="nav-link">Aloqa</a></li>
+                    </ul>
+
+                    <div class="nav-actions">
+                        <button class="btn-primary">Kursga yozilish</button>
+                        <button class="hamburger" id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-background">
+                <div class="circuit-pattern"></div>
+                <div class="floating-elements">
+                    <div class="floating-robot robot-1">🤖</div>
+                    <div class="floating-robot robot-2">⚙️</div>
+                    <div class="floating-robot robot-3">🔧</div>
+                    <div class="floating-robot robot-4">💡</div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text" data-aos="fade-up">
+                        <h1 class="hero-title">
+                            <span class="gradient-text"
+                                >Robotlar sizni emas,</span
+                            ><br />
+                            <span class="highlight"
+                                >siz robotlarni boshqaring!</span
+                            >
+                        </h1>
+                        <p class="hero-description">
+                            Robotronix – Farg'ona va Namangan viloyatlaridagi
+                            yetakchi robototexnika markazi. Biz bolalar va
+                            o'qituvchilarni kelajak texnologiyalari bilan
+                            tanishtiramiz.
+                        </p>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">O'qituvchi</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">2000+</span>
+                                <span class="stat-label">O'quvchi</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">Filial</span>
+                            </div>
+                        </div>
+                        <div class="hero-buttons">
+                            <button class="btn-primary btn-large">
+                                <i class="fas fa-robot"></i>
+                                Kursni boshlash
+                            </button>
+                            <button class="btn-outline btn-large">
+                                <i class="fas fa-play"></i>
+                                Video ko'rish
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual" data-aos="fade-left">
+                        <div class="robot-showcase">
+                            <div class="main-robot">
+                                <div class="robot-body">
+                                    <div class="robot-head-main">
+                                        <div
+                                            class="robot-eye-main left-eye"
+                                        ></div>
+                                        <div
+                                            class="robot-eye-main right-eye"
+                                        ></div>
+                                        <div class="robot-antenna"></div>
+                                    </div>
+                                    <div class="robot-torso">
+                                        <div class="led-indicator"></div>
+                                        <div class="led-indicator"></div>
+                                        <div class="led-indicator"></div>
+                                    </div>
+                                    <div class="robot-arms">
+                                        <div class="arm left-arm"></div>
+                                        <div class="arm right-arm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="code-lines">
+                                <div class="code-line">void setup() {</div>
+                                <div class="code-line">Serial.begin(9600);</div>
+                                <div class="code-line">
+                                    pinMode(LED, OUTPUT);
+                                </div>
+                                <div class="code-line">}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" data-aos="fade-up">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Afzalliklarimiz</h2>
+                    <p class="section-subtitle">Nima uchun aynan Robotronix?</p>
+                </div>
+
+                <div class="features-grid">
+                    <div
+                        class="feature-card"
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                    >
+                        <div class="feature-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="feature-title">Tajribali ustozlar</h3>
+                        <p class="feature-description">
+                            500 dan ortiq texnologiya fani o'qituvchilarini
+                            malakasini oshirgan professional jamoa
+                        </p>
+                    </div>
+
+                    <div
+                        class="feature-card"
+                        data-aos="fade-up"
+                        data-aos-delay="200"
+                    >
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="feature-title">Amaliy yondashuv</h3>
+                        <p class="feature-description">
+                            Quruq nazariya emas, har bir darsda real qurilmalar
+                            yasash va ishga tushirish
+                        </p>
+                    </div>
+
+                    <div
+                        class="feature-card"
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                    >
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="feature-title">Rasmiy maqom</h3>
+                        <p class="feature-description">
+                            IT Park va Cyberpark rezidenti, litsenziyalangan
+                            sertifikat beruvchi
+                        </p>
+                    </div>
+
+                    <div
+                        class="feature-card"
+                        data-aos="fade-up"
+                        data-aos-delay="400"
+                    >
+                        <div class="feature-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3 class="feature-title">Sifatli jihozlar</h3>
+                        <p class="feature-description">
+                            Darslar uchun maxsus tayyorlangan Arduino va LEGO
+                            to'plamlari
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses" class="courses">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">Kurslarimiz</h2>
+                    <p class="section-subtitle">
+                        4 yoshdan boshlab barcha yoshdagilar uchun
+                    </p>
+                </div>
+
+                <div class="course-tabs" data-aos="fade-up">
+                    <button class="tab-btn active" data-tab="kids">
+                        Bolalar uchun
+                    </button>
+                    <button class="tab-btn" data-tab="teachers">
+                        O'qituvchilar uchun
+                    </button>
+                </div>
+
+                <div class="courses-content">
+                    <div class="tab-content active" id="kids">
+                        <div class="courses-grid">
+                            <div
+                                class="course-card"
+                                data-aos="fade-up"
+                                data-aos-delay="100"
+                            >
+                                <div class="course-image">
+                                    <img
+                                        src="assets/images/placeholder.svg"
+                                        alt="Mitti Muhandis"
+                                    />
+                                    <div class="course-badge">4-6 yosh</div>
+                                </div>
+                                <div class="course-content">
+                                    <h3 class="course-title">Mitti Muhandis</h3>
+                                    <p class="course-description">
+                                        LEGO Classic va STEAM asosida
+                                        ijodkorlikni rivojlantirish
+                                    </p>
+                                    <div class="course-meta">
+                                        <span class="course-duration">
+                                            <i class="fas fa-clock"></i> 3 oy
+                                        </span>
+                                        <span class="course-price">
+                                            <i class="fas fa-tag"></i> 350.000
+                                            so'm
+                                        </span>
+                                    </div>
+                                    <div class="course-actions">
+                                        <button class="btn-primary btn-full">
+                                            Yozilish
+                                        </button>
+                                        <button class="btn-outline">
+                                            Batafsil
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="course-card"
+                                data-aos="fade-up"
+                                data-aos-delay="200"
+                            >
+                                <div class="course-image">
+                                    <img
+                                        src="assets/images/placeholder.svg"
+                                        alt="Kichik Muhandis"
+                                    />
+                                    <div class="course-badge">7-9 yosh</div>
+                                </div>
+                                <div class="course-content">
+                                    <h3 class="course-title">
+                                        Kichik Muhandis
+                                    </h3>
+                                    <p class="course-description">
+                                        LEGO WeDo 2.0 yordamida ilk
+                                        mexanizmlarni yasash
+                                    </p>
+                                    <div class="course-meta">
+                                        <span class="course-duration">
+                                            <i class="fas fa-clock"></i> 6 oy
+                                        </span>
+                                        <span class="course-price">
+                                            <i class="fas fa-tag"></i> 450.000
+                                            so'm
+                                        </span>
+                                    </div>
+                                    <div class="course-actions">
+                                        <button class="btn-primary btn-full">
+                                            Yozilish
+                                        </button>
+                                        <button class="btn-outline">
+                                            Batafsil
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="course-card"
+                                data-aos="fade-up"
+                                data-aos-delay="300"
+                            >
+                                <div class="course-image">
+                                    <img
+                                        src="assets/images/placeholder.svg"
+                                        alt="Yosh Muhandis"
+                                    />
+                                    <div class="course-badge">10-14 yosh</div>
+                                </div>
+                                <div class="course-content">
+                                    <h3 class="course-title">Yosh Muhandis</h3>
+                                    <p class="course-description">
+                                        Arduino platformasi asosida elektronika
+                                        va dasturlash
+                                    </p>
+                                    <div class="course-meta">
+                                        <span class="course-duration">
+                                            <i class="fas fa-clock"></i> 9 oy
+                                        </span>
+                                        <span class="course-price">
+                                            <i class="fas fa-tag"></i> 550.000
+                                            so'm
+                                        </span>
+                                    </div>
+                                    <div class="course-actions">
+                                        <button class="btn-primary btn-full">
+                                            Yozilish
+                                        </button>
+                                        <button class="btn-outline">
+                                            Batafsil
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="course-card"
+                                data-aos="fade-up"
+                                data-aos-delay="400"
+                            >
+                                <div class="course-image">
+                                    <img
+                                        src="assets/images/placeholder.svg"
+                                        alt="Dasturlash va AI"
+                                    />
+                                    <div class="course-badge">14+ yosh</div>
+                                </div>
+                                <div class="course-content">
+                                    <h3 class="course-title">
+                                        Dasturlash va AI
+                                    </h3>
+                                    <p class="course-description">
+                                        Flutter va Python orqali mobil ilovalar
+                                        va AI
+                                    </p>
+                                    <div class="course-meta">
+                                        <span class="course-duration">
+                                            <i class="fas fa-clock"></i> 12 oy
+                                        </span>
+                                        <span class="course-price">
+                                            <i class="fas fa-tag"></i> 650.000
+                                            so'm
+                                        </span>
+                                    </div>
+                                    <div class="course-actions">
+                                        <button class="btn-primary btn-full">
+                                            Yozilish
+                                        </button>
+                                        <button class="btn-outline">
+                                            Batafsil
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="teachers">
+                        <div class="teacher-course">
+                            <div
+                                class="teacher-course-content"
+                                data-aos="fade-up"
+                            >
+                                <h3 class="teacher-course-title">
+                                    Texnologiya fani o'qituvchilari uchun maxsus
+                                    kurs
+                                </h3>
+                                <div class="teacher-course-features">
+                                    <div class="feature">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span
+                                            >5-7 sinf "Texnologiya" darsligidagi
+                                            "Robototexnika" bo'limini mukammal
+                                            o'rgatish</span
+                                        >
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span
+                                            >Dars o'tish metodikasi va tayyor
+                                            taqdimotlar</span
+                                        >
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span
+                                            >Davlat namunasidagi sertifikat
+                                            (tarifikatsiyada hisoblanadi)</span
+                                        >
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span
+                                            >Online va Offline format
+                                            (Zoom/Telegram, Farg'ona,
+                                            Namangan)</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="teacher-course-price">
+                                    <span class="price-old">800.000 so'm</span>
+                                    <span class="price-new">650.000 so'm</span>
+                                </div>
+                                <button class="btn-primary btn-large">
+                                    Hoziroq yozilish
+                                </button>
+                            </div>
+                            <div
+                                class="teacher-course-image"
+                                data-aos="fade-left"
+                            >
+                                <img
+                                    src="assets/images/placeholder.svg"
+                                    alt="O'qituvchilar kursi"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">Mahsulotlarimiz</h2>
+                    <p class="section-subtitle">
+                        Ta'lim uchun maxsus tayyorlangan to'plamlar
+                    </p>
+                </div>
+
+                <div class="products-grid">
+                    <div
+                        class="product-card"
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                    >
+                        <div class="product-image">
+                            <img
+                                src="assets/images/placeholder.svg"
+                                alt="Robokit RMT-4"
+                            />
+                            <div class="product-badge">Mashhur</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">
+                                Robokit RMT-4 (Arduino To'plami)
+                            </h3>
+                            <p class="product-description">
+                                Arduino UNO (DIP versiya), datchiklar, motorlar
+                                va barcha kerakli qismlar
+                            </p>
+                            <div class="product-features">
+                                <span class="feature-tag">6-7 sinf uchun</span>
+                                <span class="feature-tag">Kafolat</span>
+                                <span class="feature-tag">O'zbek tilida</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price-main">450.000 so'm</span>
+                                <span class="price-old">520.000 so'm</span>
+                            </div>
+                            <button class="btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i>
+                                Sotib olish
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="product-card"
+                        data-aos="fade-up"
+                        data-aos-delay="200"
+                    >
+                        <div class="product-image">
+                            <img
+                                src="assets/images/placeholder.svg"
+                                alt="5-sinf To'plami"
+                            />
+                            <div class="product-badge new">Yangi</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">
+                                5-sinf Maxsus To'plami
+                            </h3>
+                            <p class="product-description">
+                                Ventilyator, Mayoq, Smart yoritgich va boshqa
+                                loyihalar uchun
+                            </p>
+                            <div class="product-features">
+                                <span class="feature-tag">5 ta loyiha</span>
+                                <span class="feature-tag">To'liq komplekt</span>
+                                <span class="feature-tag">Qo'llanma</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price-main">320.000 so'm</span>
+                            </div>
+                            <button class="btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i>
+                                Sotib olish
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="product-card"
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                    >
+                        <div class="product-image">
+                            <img
+                                src="assets/images/placeholder.svg"
+                                alt="LEGO WeDo 2.0"
+                            />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">LEGO WeDo 2.0</h3>
+                            <p class="product-description">
+                                Boshlang'ich sinf o'quvchilari uchun ta'limiy
+                                konstruktor
+                            </p>
+                            <div class="product-features">
+                                <span class="feature-tag">7-10 yosh</span>
+                                <span class="feature-tag">Bluetooth</span>
+                                <span class="feature-tag">Mobil ilova</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price-main">1.200.000 so'm</span>
+                            </div>
+                            <button class="btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i>
+                                Sotib olish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-cta" data-aos="fade-up">
+                    <button class="btn-outline btn-large">
+                        Barcha mahsulotlarni ko'rish
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section class="partners" data-aos="fade-up">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Hamkorlarimiz</h2>
+                    <p class="section-subtitle">
+                        Bizga ishonuvchi tashkilotlar
+                    </p>
+                </div>
+
+                <div class="partners-grid">
+                    <div class="partner-logo">
+                        <img
+                            src="assets/images/placeholder.svg"
+                            alt="IT Park"
+                        />
+                    </div>
+                    <div class="partner-logo">
+                        <img
+                            src="assets/images/placeholder.svg"
+                            alt="Cyberpark"
+                        />
+                    </div>
+                    <div class="partner-logo">
+                        <img
+                            src="assets/images/placeholder.svg"
+                            alt="Ta'lim vazirligi"
+                        />
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/images/placeholder.svg" alt="RTM" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text" data-aos="fade-right">
+                        <h2 class="section-title">Robotronix haqida</h2>
+                        <p class="about-description">
+                            "Robotronix" — O'zbekistonda robototexnika ta'limini
+                            yangi bosqichga olib chiqishni maqsad qilgan
+                            innovatsion markazdir. Biz nafaqat bolalarga, balki
+                            maktab o'qituvchilariga ham zamonaviy
+                            texnologiyalarni o'rgatamiz.
+                        </p>
+
+                        <div class="achievements">
+                            <div class="achievement-item">
+                                <h4>Bizning yutuqlarimiz:</h4>
+                                <ul>
+                                    <li>
+                                        Farg'ona va Namangan viloyatlarida 10
+                                        dan ortiq hamkor maktablar
+                                    </li>
+                                    <li>
+                                        Xalqaro tanlovlarda sovrinli o'rinlar
+                                        (WRO, Technovation, FGC)
+                                    </li>
+                                    <li>
+                                        Respublika Ta'lim Markazi bilan
+                                        hamkorlik
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mission">
+                            <h4>Missiyamiz:</h4>
+                            <p>
+                                Yoshlarni texnologiya iste'molchisidan
+                                texnologiya ixtirochisiga aylantirish.
+                            </p>
+                        </div>
+
+                        <button class="btn-primary">Biz bilan tanishing</button>
+                    </div>
+
+                    <div class="about-visual" data-aos="fade-left">
+                        <div class="about-image">
+                            <img
+                                src="assets/images/placeholder.svg"
+                                alt="Robotronix jamoasi"
+                            />
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+
+                        <div class="floating-stats">
+                            <div class="stat-card">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label"
+                                    >Tayyorlangan o'qituvchi</span
+                                >
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">2000+</span>
+                                <span class="stat-label"
+                                    >Muvaffaqiyatli o'quvchi</span
+                                >
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">15+</span>
+                                <span class="stat-label">Xalqaro yutuq</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" data-aos="fade-up">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Tez-tez beriladigan savollar</h2>
+                    <p class="section-subtitle">
+                        Eng mashhur savollar va javoblar
+                    </p>
+                </div>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Sertifikatlar qonuniymi?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Ha, bizning sertifikatlarimiz rasmiy litsenziya
+                                asosida beriladi va maktab o'qituvchilari uchun
+                                tarifikatsiya jarayonida inobatga olinadi
+                                (edo.ijro.uz bazasiga kiritiladi).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Online kursda o'rganish qiyin emasmi?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Yo'q, bizning online darslarimiz maxsus metodika
+                                asosida, sodda tilda va to'liq videoqo'llanmalar
+                                bilan tashkil etilgan. 500 dan ortiq ustozlar
+                                muvaffaqiyatli bitirgan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>
+                                Farzandim 5 yoshda, unga qanday kurs mos keladi?
+                            </h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                5 yoshli bolalar uchun LEGO konstruktorlari
+                                yordamida mantiqiy fikrlashni rivojlantiruvchi
+                                "Mitti Muhandis" kursimiz mavjud.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>To'lovni bo'lib to'lasa bo'ladimi?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Ha, kurslar va katta to'plamlar uchun Uzum
+                                Nasiya, Alif Nasiya kabi hamkorlarimiz orqali
+                                muddatli to'lov imkoniyati mavjud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">Bog'lanish</h2>
+                    <p class="section-subtitle">
+                        Savollaringiz bormi? Biz bilan bog'laning!
+                    </p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Manzil</h4>
+                                <p>
+                                    Farg'ona sh., Murabbiylar ko'chasi<br />
+                                    Mo'ljal: Fizika-matematika fakulteti
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Telefon</h4>
+                                <p>+998 33 803 33 53</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>info@robotronix.uz</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a
+                                href="https://t.me/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a
+                                href="https://instagram.com/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a
+                                href="https://youtube.com/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form" data-aos="fade-left">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name" class="form-label"
+                                    >Ism va familiya *</label
+                                >
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="form-input"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label"
+                                    >Telefon raqam *</label
+                                >
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    class="form-input"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="course" class="form-label"
+                                    >Qiziqtiruvchi kurs</label
+                                >
+                                <select
+                                    id="course"
+                                    name="course"
+                                    class="form-select"
+                                >
+                                    <option value="">Kursni tanlang</option>
+                                    <option value="mitti-muhandis">
+                                        Mitti Muhandis (4-6 yosh)
+                                    </option>
+                                    <option value="kichik-muhandis">
+                                        Kichik Muhandis (7-9 yosh)
+                                    </option>
+                                    <option value="yosh-muhandis">
+                                        Yosh Muhandis (10-14 yosh)
+                                    </option>
+                                    <option value="dasturlash-ai">
+                                        Dasturlash va AI (14+ yosh)
+                                    </option>
+                                    <option value="oquvchilar-kursi">
+                                        O'qituvchilar kursi
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label"
+                                    >Xabar</label
+                                >
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    class="form-textarea"
+                                    placeholder="Qo'shimcha savollaringiz..."
+                                ></textarea>
+                            </div>
+
+                            <div class="form-checkbox">
+                                <input
+                                    type="checkbox"
+                                    id="agreement"
+                                    name="agreement"
+                                    required
+                                />
+                                <label for="agreement">
+                                    Shaxsiy ma'lumotlarni qayta ishlashga
+                                    roziman
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn-primary btn-full">
+                                <i class="fas fa-paper-plane"></i>
+                                Xabar yuborish
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="#" class="footer-logo">
+                            <img
+                                src="assets/images/logo.svg"
+                                alt="Robotronix"
+                            />
+                            <span class="logo-text">Robotronix</span>
+                        </a>
+                        <p class="footer-description">
+                            Robotronix – O'zbekistonda robototexnika ta'limini
+                            yangi bosqichga olib chiquvchi innovatsion markaz.
+                            Yoshlarni texnologiya iste'molchisidan ixtirochisiga
+                            aylantiramiz.
+                        </p>
+                        <div class="footer-social">
+                            <a
+                                href="https://t.me/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a
+                                href="https://instagram.com/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a
+                                href="https://youtube.com/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Kurslar</h4>
+                        <ul class="footer-links">
+                            <li><a href="#courses">Mitti Muhandis</a></li>
+                            <li><a href="#courses">Kichik Muhandis</a></li>
+                            <li><a href="#courses">Yosh Muhandis</a></li>
+                            <li><a href="#courses">Dasturlash va AI</a></li>
+                            <li><a href="#courses">O'qituvchilar kursi</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Mahsulotlar</h4>
+                        <ul class="footer-links">
+                            <li><a href="#products">Arduino To'plamlari</a></li>
+                            <li><a href="#products">LEGO WeDo 2.0</a></li>
+                            <li><a href="#products">3D Modellar</a></li>
+                            <li>
+                                <a href="#products">Elektronika Qismlari</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Kompaniya</h4>
+                        <ul class="footer-links">
+                            <li><a href="#about">Biz haqimizda</a></li>
+                            <li><a href="#contact">Aloqa</a></li>
+                            <li><a href="#">Hamkorlik</a></li>
+                            <li><a href="#">Yangiliklar</a></li>
+                            <li><a href="#">Vakansiyalar</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div>
+                        <p>
+                            &copy; 2024 Robotronix. Barcha huquqlar
+                            himoyalangan.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#">Maxfiylik siyosati</a>
+                        <span style="margin: 0 10px">•</span>
+                        <a href="#">Foydalanish shartlari</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="assets/js/script.js"></script>
+    </body>
+</html>

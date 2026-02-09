@@ -1,0 +1,67 @@
+{
+  "name": "robotronix-website",
+  "version": "1.0.0",
+  "description": "Robotronix - Modern robotics education platform website",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=index.html",
+    "dev": "live-server --port=3000 --open=index.html --watch=assets/",
+    "build": "npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o assets/css/style.min.css assets/css/style.css",
+    "minify-js": "uglifyjs assets/js/script.js -o assets/js/script.min.js",
+    "optimize-images": "imagemin assets/images/**/*.{jpg,png,gif,svg} --out-dir=assets/images/optimized/",
+    "serve": "http-server -p 8080 -o",
+    "lint": "eslint assets/js/",
+    "format": "prettier --write \"**/*.{html,css,js,md}\"",
+    "validate": "html-validate *.html pages/*.html",
+    "test": "echo \"No tests specified\" && exit 0",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "robotics",
+    "education",
+    "uzbekistan",
+    "arduino",
+    "lego",
+    "programming",
+    "stem",
+    "website",
+    "frontend"
+  ],
+  "author": {
+    "name": "Robotronix Team",
+    "email": "info@robotronix.uz",
+    "url": "https://robotronix.uz"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robotronix/website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robotronix/website/issues"
+  },
+  "homepage": "https://robotronix.uz",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.57.0",
+    "gh-pages": "^6.1.0",
+    "html-validate": "^8.7.4",
+    "http-server": "^14.1.1",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.1.1",
+    "uglify-js": "^3.17.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

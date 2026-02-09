@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="uz">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kurslar - Robotronix</title>
+        <meta
+            name="description"
+            content="Robotronix kurslari - 4 yoshdan boshlab barcha yoshdagilar uchun robototexnika, dasturlash va elektronika kurslari. Bolalar va o'qituvchilar uchun maxsus dasturlar."
+        />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="../assets/images/favicon.svg"
+        />
+
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css" />
+
+        <!-- AOS Animation -->
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="logo">
+                        <a href="../index.html">
+                            <img
+                                src="../assets/images/logo.svg"
+                                alt="Robotronix"
+                                class="logo-img"
+                            />
+                            <span class="logo-text">Robotronix</span>
+                        </a>
+                    </div>
+
+                    <ul class="nav-menu" id="nav-menu">
+                        <li>
+                            <a href="../index.html" class="nav-link"
+                                >Bosh sahifa</a
+                            >
+                        </li>
+                        <li>
+                            <a href="courses.html" class="nav-link active"
+                                >Kurslar</a
+                            >
+                        </li>
+                        <li>
+                            <a href="products.html" class="nav-link"
+                                >Mahsulotlar</a
+                            >
+                        </li>
+                        <li>
+                            <a href="../index.html#about" class="nav-link"
+                                >Biz haqimizda</a
+                            >
+                        </li>
+                        <li>
+                            <a href="../index.html#contact" class="nav-link"
+                                >Aloqa</a
+                            >
+                        </li>
+                    </ul>
+
+                    <div class="nav-actions">
+                        <button class="btn-primary">Kursga yozilish</button>
+                        <button class="hamburger" id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="breadcrumb">
+                        <a href="../index.html">Bosh sahifa</a>
+                        <span>/</span>
+                        <span>Kurslar</span>
+                    </div>
+                    <h1 class="page-title">Kurslarimiz</h1>
+                    <p class="page-subtitle">
+                        4 yoshdan boshlab barcha yoshdagilar uchun
+                        robototexnika, dasturlash va elektronika kurslari
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Filters -->
+        <section class="course-filters">
+            <div class="container">
+                <div class="filters-wrapper">
+                    <div class="filter-group">
+                        <label>Yosh bo'yicha:</label>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-age="all">
+                                Barchasi
+                            </button>
+                            <button class="filter-btn" data-age="4-6">
+                                4-6 yosh
+                            </button>
+                            <button class="filter-btn" data-age="7-9">
+                                7-9 yosh
+                            </button>
+                            <button class="filter-btn" data-age="10-14">
+                                10-14 yosh
+                            </button>
+                            <button class="filter-btn" data-age="14+">
+                                14+ yosh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Format bo'yicha:</label>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-format="all">
+                                Barchasi
+                            </button>
+                            <button class="filter-btn" data-format="offline">
+                                Offline
+                            </button>
+                            <button class="filter-btn" data-format="online">
+                                Online
+                            </button>
+                            <button class="filter-btn" data-format="hybrid">
+                                Aralash
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Auditoriya:</label>
+                        <div class="filter-buttons">
+                            <button
+                                class="filter-btn active"
+                                data-audience="all"
+                            >
+                                Barchasi
+                            </button>
+                            <button class="filter-btn" data-audience="students">
+                                O'quvchilar
+                            </button>
+                            <button class="filter-btn" data-audience="teachers">
+                                O'qituvchilar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Grid -->
+        <section class="courses-page">
+            <div class="container">
+                <div class="courses-grid">
+                    <!-- Mitti Muhandis -->
+                    <div
+                        class="course-card detailed"
+                        data-age="4-6"
+                        data-format="offline"
+                        data-audience="students"
+                        data-aos="fade-up"
+                    >
+                        <div class="course-image">
+                            <img
+                                src="../assets/images/placeholder.svg"
+                                alt="Mitti Muhandis"
+                            />
+                            <div class="course-badge">4-6 yosh</div>
+                            <div class="course-level">Boshlang'ich</div>
+                        </div>
+                        <div class="course-content">
+                            <div class="course-header">
+                                <h3 class="course-title">Mitti Muhandis</h3>
+                                <div class="course-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-text">(4.9)</span>
+                                </div>
+                            </div>
+
+                            <p class="course-description">
+                                LEGO Classic va STEAM asosida ijodkorlikni
+                                rivojlantirish, motorika va mantiqiy fikrlashni
+                                o'stirish
+                            </p>
+
+                            <div class="course-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 oy davomiylik</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>8 kishilik guruh</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Haftada 2 marta</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Offline format</span>
+                                </div>
+                            </div>
+
+                            <div class="course-topics">
+                                <h4>Kurs mavzulari:</h4>
+                                <ul>
+                                    <li>LEGO bilan tanishish</li>
+                                    <li>Oddiy konstruksiyalar yasash</li>
+                                    <li>Rangli naqshlar yaratish</li>
+                                    <li>Hayvonlar va transport vositalari</li>
+                                    <li>Ijodiy loyihalar</li>
+                                </ul>
+                            </div>
+
+                            <div class="course-meta">
+                                <div class="course-price">
+                                    <span class="price-main">350.000 so'm</span>
+                                    <span class="price-per">oyiga</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="btn-primary">
+                                        Yozilish
+                                    </button>
+                                    <button class="btn-outline">
+                                        Batafsil ma'lumot
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kichik Muhandis -->
+                    <div
+                        class="course-card detailed"
+                        data-age="7-9"
+                        data-format="offline"
+                        data-audience="students"
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                    >
+                        <div class="course-image">
+                            <img
+                                src="../assets/images/placeholder.svg"
+                                alt="Kichik Muhandis"
+                            />
+                            <div class="course-badge">7-9 yosh</div>
+                            <div class="course-level">O'rta</div>
+                        </div>
+                        <div class="course-content">
+                            <div class="course-header">
+                                <h3 class="course-title">Kichik Muhandis</h3>
+                                <div class="course-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-text">(4.8)</span>
+                                </div>
+                            </div>
+
+                            <p class="course-description">
+                                LEGO WeDo 2.0 yordamida ilk mexanizmlarni yasash
+                                va ularni planshet orqali harakatga keltirish
+                            </p>
+
+                            <div class="course-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>6 oy davomiylik</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>10 kishilik guruh</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Haftada 2 marta</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Offline format</span>
+                                </div>
+                            </div>
+
+                            <div class="course-topics">
+                                <h4>Kurs mavzulari:</h4>
+                                <ul>
+                                    <li>WeDo 2.0 bilan tanishish</li>
+                                    <li>Motorlar va datchiklar</li>
+                                    <li>Oddiy robotlar yasash</li>
+                                    <li>Dasturlash asoslari</li>
+                                    <li>Interaktiv loyihalar</li>
+                                </ul>
+                            </div>
+
+                            <div class="course-meta">
+                                <div class="course-price">
+                                    <span class="price-main">450.000 so'm</span>
+                                    <span class="price-per">oyiga</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="btn-primary">
+                                        Yozilish
+                                    </button>
+                                    <button class="btn-outline">
+                                        Batafsil ma'lumot
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Yosh Muhandis -->
+                    <div
+                        class="course-card detailed"
+                        data-age="10-14"
+                        data-format="offline"
+                        data-audience="students"
+                        data-aos="fade-up"
+                        data-aos-delay="200"
+                    >
+                        <div class="course-image">
+                            <img
+                                src="../assets/images/placeholder.svg"
+                                alt="Yosh Muhandis"
+                            />
+                            <div class="course-badge">10-14 yosh</div>
+                            <div class="course-level">Yuqori</div>
+                        </div>
+                        <div class="course-content">
+                            <div class="course-header">
+                                <h3 class="course-title">Yosh Muhandis</h3>
+                                <div class="course-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-text">(5.0)</span>
+                                </div>
+                            </div>
+
+                            <p class="course-description">
+                                Arduino platformasi asosida elektronika,
+                                sxemotexnika va C++ tilida dasturlashni
+                                o'rganish
+                            </p>
+
+                            <div class="course-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>9 oy davomiylik</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>12 kishilik guruh</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Haftada 2 marta</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Offline format</span>
+                                </div>
+                            </div>
+
+                            <div class="course-topics">
+                                <h4>Kurs mavzulari:</h4>
+                                <ul>
+                                    <li>Arduino asoslari</li>
+                                    <li>Elektronika va sxemalar</li>
+                                    <li>C++ dasturlash tili</li>
+                                    <li>"Aqlli uy" loyihasi</li>
+                                    <li>"Robot mashina" yaratish</li>
+                                </ul>
+                            </div>
+
+                            <div class="course-meta">
+                                <div class="course-price">
+                                    <span class="price-main">550.000 so'm</span>
+                                    <span class="price-per">oyiga</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="btn-primary">
+                                        Yozilish
+                                    </button>
+                                    <button class="btn-outline">
+                                        Batafsil ma'lumot
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dasturlash va AI -->
+                    <div
+                        class="course-card detailed"
+                        data-age="14+"
+                        data-format="hybrid"
+                        data-audience="students"
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                    >
+                        <div class="course-image">
+                            <img
+                                src="../assets/images/placeholder.svg"
+                                alt="Dasturlash va AI"
+                            />
+                            <div class="course-badge">14+ yosh</div>
+                            <div class="course-level">Professional</div>
+                        </div>
+                        <div class="course-content">
+                            <div class="course-header">
+                                <h3 class="course-title">Dasturlash va AI</h3>
+                                <div class="course-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-text">(4.9)</span>
+                                </div>
+                            </div>
+
+                            <p class="course-description">
+                                Flutter va Python orqali mobil ilovalar hamda
+                                sun'iy intellekt asoslarini o'rganish
+                            </p>
+
+                            <div class="course-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>12 oy davomiylik</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>15 kishilik guruh</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Haftada 3 marta</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Online/Offline</span>
+                                </div>
+                            </div>
+
+                            <div class="course-topics">
+                                <h4>Kurs mavzulari:</h4>
+                                <ul>
+                                    <li>Python dasturlash tili</li>
+                                    <li>Flutter mobil dasturlash</li>
+                                    <li>Sun'iy intellekt asoslari</li>
+                                    <li>Ma'lumotlar tahlili</li>
+                                    <li>Loyiha ishlab chiqish</li>
+                                </ul>
+                            </div>
+
+                            <div class="course-meta">
+                                <div class="course-price">
+                                    <span class="price-main">650.000 so'm</span>
+                                    <span class="price-per">oyiga</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="btn-primary">
+                                        Yozilish
+                                    </button>
+                                    <button class="btn-outline">
+                                        Batafsil ma'lumot
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- O'qituvchilar kursi -->
+                    <div
+                        class="course-card detailed teacher-course"
+                        data-age="adult"
+                        data-format="online"
+                        data-audience="teachers"
+                        data-aos="fade-up"
+                        data-aos-delay="400"
+                    >
+                        <div class="course-image">
+                            <img
+                                src="../assets/images/placeholder.svg"
+                                alt="O'qituvchilar kursi"
+                            />
+                            <div class="course-badge">O'qituvchilar</div>
+                            <div class="course-level special">Sertifikat</div>
+                        </div>
+                        <div class="course-content">
+                            <div class="course-header">
+                                <h3 class="course-title">
+                                    Texnologiya fani o'qituvchilari kursi
+                                </h3>
+                                <div class="course-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-text">(5.0)</span>
+                                </div>
+                            </div>
+
+                            <p class="course-description">
+                                5-7 sinf "Texnologiya" darsligidagi
+                                "Robototexnika" bo'limini mukammal o'rgatish
+                                metodikasi
+                            </p>
+
+                            <div class="course-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 oy davomiylik</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>20 kishilik guruh</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Haftada 3 marta</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Davlat sertifikati</span>
+                                </div>
+                            </div>
+
+                            <div class="course-topics">
+                                <h4>Kurs mavzulari:</h4>
+                                <ul>
+                                    <li>Dars o'tish metodikasi</li>
+                                    <li>Tayyor taqdimotlar</li>
+                                    <li>Amaliy mashg'ulotlar</li>
+                                    <li>Baholash tizimlari</li>
+                                    <li>Sertifikat olish</li>
+                                </ul>
+                            </div>
+
+                            <div class="course-benefits">
+                                <h4>Kurs afzalliklari:</h4>
+                                <div class="benefits-list">
+                                    <span class="benefit-tag"
+                                        >Tarifikatsiyada hisoblanadi</span
+                                    >
+                                    <span class="benefit-tag"
+                                        >Online/Offline format</span
+                                    >
+                                    <span class="benefit-tag"
+                                        >Amaliy tajriba</span
+                                    >
+                                    <span class="benefit-tag"
+                                        >Doimiy qo'llab-quvvatlash</span
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="course-meta">
+                                <div class="course-price">
+                                    <span class="price-old">800.000 so'm</span>
+                                    <span class="price-main">650.000 so'm</span>
+                                    <span class="discount">-19%</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="btn-primary">
+                                        Hoziroq yozilish
+                                    </button>
+                                    <button class="btn-outline">
+                                        Batafsil ma'lumot
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="load-more" data-aos="fade-up">
+                    <button class="btn-outline btn-large">
+                        Ko'proq kurslar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Qaysi kursni tanlashda qiynalayapsizmi?</h2>
+                    <p>
+                        Bizning mutaxassislarimiz sizga eng mos kursni tanlashda
+                        yordam berishadi
+                    </p>
+                    <div class="cta-buttons">
+                        <button class="btn-primary btn-large">
+                            <i class="fas fa-phone"></i>
+                            Konsultatsiya olish
+                        </button>
+                        <button class="btn-outline btn-large">
+                            <i class="fas fa-calendar"></i>
+                            Ochiq darsga tashrif
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="../index.html" class="footer-logo">
+                            <img
+                                src="../assets/images/logo.svg"
+                                alt="Robotronix"
+                            />
+                            <span class="logo-text">Robotronix</span>
+                        </a>
+                        <p class="footer-description">
+                            Robotronix – O'zbekistonda robototexnika ta'limini
+                            yangi bosqichga olib chiquvchi innovatsion markaz.
+                        </p>
+                        <div class="footer-social">
+                            <a
+                                href="https://t.me/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a
+                                href="https://instagram.com/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a
+                                href="https://youtube.com/robotronixuz"
+                                class="social-link"
+                            >
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Kurslar</h4>
+                        <ul class="footer-links">
+                            <li><a href="#courses">Mitti Muhandis</a></li>
+                            <li><a href="#courses">Kichik Muhandis</a></li>
+                            <li><a href="#courses">Yosh Muhandis</a></li>
+                            <li><a href="#courses">Dasturlash va AI</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Kompaniya</h4>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="../index.html#about">Biz haqimizda</a>
+                            </li>
+                            <li><a href="../index.html#contact">Aloqa</a></li>
+                            <li><a href="#">Hamkorlik</a></li>
+                            <li><a href="#">Yangiliklar</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Qo'llab-quvvatlash</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Yordam markazi</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Maxfiylik</a></li>
+                            <li><a href="#">Shartlar</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div>
+                        <p>
+                            &copy; 2024 Robotronix. Barcha huquqlar
+                            himoyalangan.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#">Maxfiylik siyosati</a>
+                        <span style="margin: 0 10px">•</span>
+                        <a href="#">Foydalanish shartlari</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="../assets/js/script.js"></script>
+        <script>
+            // Course filtering functionality
+            document.addEventListener("DOMContentLoaded", function () {
+                const filterButtons = document.querySelectorAll(".filter-btn");
+                const courseCards = document.querySelectorAll(".course-card");
+
+                filterButtons.forEach((button) => {
+                    button.addEventListener("click", function () {
+                        const filterType =
+                            this.dataset.age ||
+                            this.dataset.format ||
+                            this.dataset.audience;
+                        const filterCategory = this.dataset.age
+                            ? "age"
+                            : this.dataset.format
+                              ? "format"
+                              : "audience";
+
+                        // Remove active class from siblings
+                        const siblings =
+                            this.parentElement.querySelectorAll(".filter-btn");
+                        siblings.forEach((sibling) =>
+                            sibling.classList.remove("active"),
+                        );
+
+                        // Add active class to clicked button
+                        this.classList.add("active");
+
+                        // Filter courses
+                        filterCourses();
+                    });
+                });
+
+                function filterCourses() {
+                    const activeAgeFilter = document.querySelector(
+                        ".filter-btn[data-age].active",
+                    ).dataset.age;
+                    const activeFormatFilter = document.querySelector(
+                        ".filter-btn[data-format].active",
+                    ).dataset.format;
+                    const activeAudienceFilter = document.querySelector(
+                        ".filter-btn[data-audience].active",
+                    ).dataset.audience;
+
+                    courseCards.forEach((card) => {
+                        const cardAge = card.dataset.age;
+                        const cardFormat = card.dataset.format;
+                        const cardAudience = card.dataset.audience;
+
+                        const ageMatch =
+                            activeAgeFilter === "all" ||
+                            cardAge === activeAgeFilter;
+                        const formatMatch =
+                            activeFormatFilter === "all" ||
+                            cardFormat === activeFormatFilter;
+                        const audienceMatch =
+                            activeAudienceFilter === "all" ||
+                            cardAudience === activeAudienceFilter;
+
+                        if (ageMatch && formatMatch && audienceMatch) {
+                            card.style.display = "block";
+                            card.style.opacity = "1";
+                        } else {
+                            card.style.display = "none";
+                            card.style.opacity = "0";
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
