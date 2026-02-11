@@ -1,0 +1,219 @@
+/* ===== Layout Fixes for Courses & Products Pages ===== */
+
+/* Page padding to clear fixed navbar */
+.courses-page,
+.products-page {
+    padding-top: 140px !important;
+    padding-bottom: 60px !important;
+    min-height: 100vh;
+    background-color: var(--dark-bg);
+}
+
+/* Container centering */
+.courses-page .container,
+.products-page .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section header centering */
+.courses-page .section-header,
+.products-page .section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.courses-page .section-title,
+.products-page .section-title {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.courses-page .section-subtitle,
+.products-page .section-subtitle {
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== Course Tabs ===== */
+.course-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.course-tabs .tab-btn {
+    padding: 12px 32px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.course-tabs .tab-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.course-tabs .tab-btn.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color, #0066ff));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(0, 200, 255, 0.3);
+}
+
+/* ===== Products Search ===== */
+.products-search {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+}
+
+.products-search .search-input {
+    width: 100%;
+    padding: 15px 50px 15px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.products-search .search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.products-search .search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.1);
+}
+
+.products-search .search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+/* ===== Grids ===== */
+.courses-grid,
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding-bottom: 40px;
+}
+
+/* ===== Cards ===== */
+.course-card,
+.product-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover,
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Product Actions */
+.product-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-actions .btn-outline {
+    text-align: center;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    width: 100%;
+    grid-column: 1 / -1;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.4;
+    display: block;
+}
+
+.empty-state p {
+    font-size: 16px;
+}
+
+/* ===== Loading Spinner ===== */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+
+    .courses-page .container,
+    .products-page .container {
+        padding: 0 15px;
+    }
+
+    .courses-page .section-header,
+    .products-page .section-header {
+        margin-bottom: 30px;
+    }
+
+    .course-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .course-tabs .tab-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .courses-grid,
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

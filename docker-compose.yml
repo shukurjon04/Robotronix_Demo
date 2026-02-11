@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./robotronix-backend
+    container_name: robotronix-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/robotronix
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+    depends_on:
+      - db
+      - redis
+    networks:
+      - robotronix-network
+
+  frontend:
+    build: ./robotronix-frontend
+    container_name: robotronix-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - robotronix-network
+
+  db:
+    image: postgres:16-alpine
+    container_name: robotronix-db
+    environment:
+      - POSTGRES_DB=robotronix
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - robotronix_uploads:/app/uploads
+    networks:
+      - robotronix-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: robotronix-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - robotronix-network
+
+networks:
+  robotronix-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  robotronix_uploads:
