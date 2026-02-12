@@ -48,49 +48,63 @@ const CourseDetailPage = () => {
 
     return (
         <div className="course-detail-container">
-            <div className="course-header" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${course.imageUrl || '/assets/placeholder-course.jpg'})` }}>
+            <div
+                className="course-header"
+                style={{ backgroundImage: `url(${course.imageUrl || '/assets/placeholder-course.jpg'})` }}
+                data-aos="fade-down"
+            >
                 <div className="container">
-                    <nav className="breadcrumb">
-                        <Link to="/courses">Kurslar</Link> / {course.title}
+                    <nav className="breadcrumb" data-aos="fade-right" data-aos-delay="200">
+                        <Link to="/courses">Kurslar</Link> <i className="fas fa-chevron-right" style={{ fontSize: '10px', margin: '0 8px' }}></i> {course.title}
                     </nav>
-                    <h1>{course.title}</h1>
-                    <div className="course-badges">
-                        <span className="badge">{course.category}</span>
-                        <span className="badge">{course.duration}</span>
+                    <h1 data-aos="fade-up" data-aos-delay="300">{course.title}</h1>
+                    <div className="course-badges" data-aos="fade-up" data-aos-delay="400">
+                        <span className="badge"><i className="fas fa-layer-group"></i> {course.category}</span>
+                        <span className="badge"><i className="fas fa-clock"></i> {course.duration}</span>
                     </div>
                 </div>
             </div>
 
             <div className="course-content-grid container">
-                <div className="course-main">
-                    <h2>Kurs haqida</h2>
+                <main className="course-main" data-aos="fade-right" data-aos-delay="500">
+                    <div className="section-title-wrap">
+                        <h2><i className="fas fa-info-circle"></i> Kurs haqida</h2>
+                    </div>
                     <p className="description">{course.description}</p>
 
                     {course.syllabus && (
-                        <div className="syllabus">
-                            <h3>Dastur</h3>
+                        <div className="syllabus" data-aos="fade-up">
+                            <h3><i className="fas fa-list-ul"></i> Kurs dasturi</h3>
                             <pre>{course.syllabus}</pre>
                         </div>
                     )}
-                </div>
+                </main>
 
-                <div className="course-sidebar">
+                <aside className="course-sidebar" data-aos="fade-left" data-aos-delay="500">
                     <div className="enrollment-card">
+                        <div className="price-label">Kurs narxi:</div>
                         <div className="price">{course.price?.toLocaleString() || '0'} so'm</div>
+
                         <button
                             onClick={handleEnroll}
                             className="btn-primary btn-large btn-full"
                             disabled={isEnrolling}
                         >
-                            {isEnrolling ? 'Yozilmoqda...' : 'Kursga yozilish'}
+                            {isEnrolling ? (
+                                <><i className="fas fa-spinner fa-spin"></i> Yozilmoqda...</>
+                            ) : (
+                                <><i className="fas fa-user-plus"></i> Kursga yozilish</>
+                            )}
                         </button>
+
                         <ul className="course-features">
-                            <li>Sertifikat beriladi</li>
-                            <li>Amaliy loyihalar</li>
-                            <li>Mentor yordami</li>
+                            <li><i className="fas fa-certificate"></i> Sertifikat beriladi</li>
+                            <li><i className="fas fa-laptop-code"></i> Amaliy loyihalar</li>
+                            <li><i className="fas fa-headset"></i> Mentor yordami</li>
+                            <li><i className="fas fa-infinity"></i> Umrbod kirish</li>
                         </ul>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
     );

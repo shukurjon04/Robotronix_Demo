@@ -37,7 +37,7 @@ const CourseCard = ({ course }) => {
                 </div>
                 <div className="course-actions">
                     <button onClick={handleEnroll} className="btn-primary btn-full">Yozilish</button>
-                    <Link to={`/courses/${course.id}`} className="btn-outline">Batafsil</Link>
+                    <Link to={`/courses/${course.id}`} className="btn-outline btn-full">Batafsil</Link>
                 </div>
             </div>
         </div>

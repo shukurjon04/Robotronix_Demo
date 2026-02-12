@@ -58,50 +58,53 @@ const Navbar = () => {
                     </Link>
 
                     <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} id="nav-menu">
-                        <li>
-                            <a
-                                href="/#home"
-                                className="nav-link"
-                                onClick={(e) => handleNavClick(e, 'home')}
-                            >
-                                Bosh sahifa
-                            </a>
-                        </li>
-                        <li>
-                            <Link to="/courses" className="nav-link">Kurslar</Link>
-                        </li>
-                        <li>
-                            <Link to="/products" className="nav-link">Do'kon</Link>
-                        </li>
-                        {isAuthenticated && (
-                            <li>
-                                <Link to="/cart" className="nav-link">
-                                    Savat {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
-                                </Link>
-                            </li>
-                        )}
-                        <li>
-                            <a
-                                href="/#about"
-                                className="nav-link"
-                                onClick={(e) => handleNavClick(e, 'about')}
-                            >
-                                Biz haqimizda
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="/#contact"
-                                className="nav-link"
-                                onClick={(e) => handleNavClick(e, 'contact')}
-                            >
-                                Aloqa
-                            </a>
-                        </li>
-                        {hasRole('ADMIN') && (
+                        {!hasRole('ADMIN') ? (
+                            <>
+                                <li>
+                                    <a
+                                        href="/#home"
+                                        className="nav-link"
+                                        onClick={(e) => handleNavClick(e, 'home')}
+                                    >
+                                        Bosh sahifa
+                                    </a>
+                                </li>
+                                <li>
+                                    <Link to="/courses" className="nav-link">Kurslar</Link>
+                                </li>
+                                <li>
+                                    <Link to="/products" className="nav-link">Do'kon</Link>
+                                </li>
+                                {isAuthenticated && (
+                                    <li>
+                                        <Link to="/cart" className="nav-link">
+                                            Savat {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
+                                        </Link>
+                                    </li>
+                                )}
+                                <li>
+                                    <a
+                                        href="/#about"
+                                        className="nav-link"
+                                        onClick={(e) => handleNavClick(e, 'about')}
+                                    >
+                                        Biz haqimizda
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/#contact"
+                                        className="nav-link"
+                                        onClick={(e) => handleNavClick(e, 'contact')}
+                                    >
+                                        Aloqa
+                                    </a>
+                                </li>
+                            </>
+                        ) : (
                             <li>
                                 <Link to="/admin" className="nav-link">
-                                    Admin Panel
+                                    <i className="fas fa-user-shield"></i> Admin Panel
                                 </Link>
                             </li>
                         )}
