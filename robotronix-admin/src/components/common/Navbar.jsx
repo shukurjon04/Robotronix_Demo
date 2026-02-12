@@ -103,9 +103,9 @@ const Navbar = () => {
                             </>
                         ) : (
                             <li>
-                                <a href="http://admin.robotronix.uz" className="nav-link">
+                                <Link to="/admin" className="nav-link">
                                     <i className="fas fa-user-shield"></i> Admin Panel
-                                </a>
+                                </Link>
                             </li>
                         )}
                     </ul>

@@ -31,6 +31,16 @@ services:
     networks:
       - robotronix-network
 
+  admin-frontend:
+    build: ./robotronix-admin
+    container_name: robotronix-admin
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    networks:
+      - robotronix-network
+
   db:
     image: postgres:16-alpine
     container_name: robotronix-db

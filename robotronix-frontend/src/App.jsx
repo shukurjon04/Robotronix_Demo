@@ -13,13 +13,10 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CartPage from './pages/CartPage'
 import CoursesPage from './pages/CoursesPage'
 import CourseDetailPage from './pages/CourseDetailPage'
-import AdminDashboard from './pages/admin/Dashboard'
-import ProtectedRoute from './components/common/ProtectedRoute'
 
 function App() {
   const location = useLocation()
-  const isAdminPath = location.pathname.startsWith('/admin') ||
-    location.pathname === '/login' ||
+  const isAuthPath = location.pathname === '/login' ||
     location.pathname === '/register'
 
   return (
@@ -27,7 +24,7 @@ function App() {
       <CartProvider>
         <Preloader />
         <ScrollToHash />
-        {!isAdminPath && <Navbar />}
+        {!isAuthPath && <Navbar />}
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -38,17 +35,9 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/courses/:id" element={<CourseDetailPage />} />
-            <Route
-              path="/admin/*"
-              element={
-                <ProtectedRoute requiredRole="ADMIN">
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
           </Routes>
         </main>
-        {!isAdminPath && <Footer />}
+        {!isAuthPath && <Footer />}
       </CartProvider>
     </AuthProvider>
   )
