@@ -52,133 +52,117 @@ const RegisterPage = () => {
     }
 
     return (
-        <section className="contact" style={{ minHeight: '100vh', paddingTop: '120px' }}>
-            <div className="container">
-                <div className="section-header" data-aos="fade-up">
-                    <h2 className="section-title">Ro'yxatdan o'tish</h2>
-                    <p className="section-subtitle">
-                        Yangi hisob yarating
-                    </p>
+        <div className="min-h-screen bg-dark flex items-center justify-center px-4 py-12">
+            <div className="w-full max-w-md">
+                <div className="text-center mb-8" data-aos="fade-up">
+                    <h2 className="text-3xl font-bold text-white mb-2">Ro'yxatdan o'tish</h2>
+                    <p className="text-gray-400">Yangi hisob yarating</p>
                 </div>
 
-                <div style={{ maxWidth: '500px', margin: '0 auto' }}>
-                    <div className="contact-form" data-aos="fade-up">
-                        <form onSubmit={handleSubmit}>
-                            {error && (
-                                <div style={{
-                                    background: 'rgba(255, 107, 53, 0.1)',
-                                    border: '1px solid var(--accent-color)',
-                                    borderRadius: '10px',
-                                    padding: '15px',
-                                    marginBottom: '25px',
-                                    color: 'var(--accent-color)'
-                                }}>
-                                    {error}
-                                </div>
-                            )}
-
-                            <div className="form-group">
-                                <label htmlFor="fullName" className="form-label">
-                                    Ism va familiya *
-                                </label>
-                                <input
-                                    type="text"
-                                    id="fullName"
-                                    name="fullName"
-                                    className="form-input"
-                                    value={formData.fullName}
-                                    onChange={handleChange}
-                                    required
-                                />
+                <div className="bg-dark-card border border-gray-800 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        {error && (
+                            <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm flex items-center gap-2">
+                                <i className="fas fa-exclamation-circle"></i>
+                                {error}
                             </div>
+                        )}
 
-                            <div className="form-group">
-                                <label htmlFor="email" className="form-label">
-                                    Email *
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    className="form-input"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                        <div>
+                            <label htmlFor="fullName" className="block text-sm font-medium text-gray-400 mb-2">
+                                Ism va familiya *
+                            </label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                className="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                value={formData.fullName}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="phone" className="form-label">
-                                    Telefon raqam
-                                </label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    className="form-input"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">
+                                Email *
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                className="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="password" className="form-label">
-                                    Parol *
-                                </label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    className="form-input"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    required
-                                    minLength={6}
-                                />
-                            </div>
+                        <div>
+                            <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-2">
+                                Telefon raqam
+                            </label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                className="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="confirmPassword" className="form-label">
-                                    Parolni tasdiqlash *
-                                </label>
-                                <input
-                                    type="password"
-                                    id="confirmPassword"
-                                    name="confirmPassword"
-                                    className="form-input"
-                                    value={formData.confirmPassword}
-                                    onChange={handleChange}
-                                    required
-                                    minLength={6}
-                                />
-                            </div>
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-400 mb-2">
+                                Parol *
+                            </label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                                minLength={6}
+                            />
+                        </div>
 
-                            <button
-                                type="submit"
-                                className="btn-primary btn-full"
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? 'Yuborilmoqda...' : 'Ro\'yxatdan o\'tish'}
-                            </button>
+                        <div>
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-400 mb-2">
+                                Parolni tasdiqlash *
+                            </label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                className="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                required
+                                minLength={6}
+                            />
+                        </div>
 
-                            <p style={{
-                                textAlign: 'center',
-                                marginTop: '20px',
-                                color: 'var(--text-secondary)'
-                            }}>
-                                Hisobingiz bormi?{' '}
-                                <Link
-                                    to="/login"
-                                    style={{ color: 'var(--primary-color)', textDecoration: 'none' }}
-                                >
-                                    Kirish
-                                </Link>
-                            </p>
-                        </form>
-                    </div>
+                        <button
+                            type="submit"
+                            className="btn-primary w-full justify-center py-3"
+                            disabled={isSubmitting}
+                        >
+                            <i className={`fas ${isSubmitting ? 'fa-spinner fa-spin' : 'fa-user-plus'} mr-2`}></i>
+                            {isSubmitting ? 'Yuborilmoqda...' : 'Ro\'yxatdan o\'tish'}
+                        </button>
+
+                        <p className="text-center text-gray-400 text-sm">
+                            Hisobingiz bormi?{' '}
+                            <Link to="/login" className="text-primary hover:text-blue-400 transition-colors">
+                                Kirish
+                            </Link>
+                        </p>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 

@@ -2,27 +2,25 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <footer className="footer">
-            <div className="container">
-                <div className="footer-content">
-                    <div className="footer-brand">
-                        <Link to="/" className="footer-logo">
-                            <img
-                                src="/assets/images/logo.svg"
-                                alt="Robotronix"
-                            />
-                            <span className="logo-text">Robotronix</span>
+        <footer className="bg-dark/95 border-t border-gray-800 pt-16 pb-8">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+                    {/* Brand Section */}
+                    <div className="lg:col-span-4 space-y-6">
+                        <Link to="/" className="flex items-center gap-2">
+                            <i className="fas fa-robot text-primary text-3xl"></i>
+                            <span className="text-2xl font-bold text-white tracking-wide">Robotronix</span>
                         </Link>
-                        <p className="footer-description">
+                        <p className="text-gray-400 leading-relaxed max-w-sm">
                             Robotronix – O'zbekistonda robototexnika ta'limini
                             yangi bosqichga olib chiquvchi innovatsion markaz.
                             Yoshlarni texnologiya iste'molchisidan ixtirochisiga
                             aylantiramiz.
                         </p>
-                        <div className="footer-social">
+                        <div className="flex gap-4">
                             <a
                                 href="https://t.me/robotronixuz"
-                                className="social-link"
+                                className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-blue-500 hover:text-white transition-all duration-300"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -30,7 +28,7 @@ const Footer = () => {
                             </a>
                             <a
                                 href="https://instagram.com/robotronixuz"
-                                className="social-link"
+                                className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition-all duration-300"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -38,7 +36,7 @@ const Footer = () => {
                             </a>
                             <a
                                 href="https://youtube.com/robotronixuz"
-                                className="social-link"
+                                className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -47,50 +45,47 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="footer-section">
-                        <h4>Kurslar</h4>
-                        <ul className="footer-links">
-                            <li><a href="/#courses">Mitti Muhandis</a></li>
-                            <li><a href="/#courses">Kichik Muhandis</a></li>
-                            <li><a href="/#courses">Yosh Muhandis</a></li>
-                            <li><a href="/#courses">Dasturlash va AI</a></li>
-                            <li><a href="/#courses">O'qituvchilar kursi</a></li>
+                    {/* Links Sections */}
+                    <div className="lg:col-span-2 md:col-span-1">
+                        <h4 className="text-white font-bold text-lg mb-6">Kurslar</h4>
+                        <ul className="space-y-4">
+                            <li><a href="/#courses" className="text-gray-400 hover:text-primary transition-colors">Mitti Muhandis</a></li>
+                            <li><a href="/#courses" className="text-gray-400 hover:text-primary transition-colors">Kichik Muhandis</a></li>
+                            <li><a href="/#courses" className="text-gray-400 hover:text-primary transition-colors">Yosh Muhandis</a></li>
+                            <li><a href="/#courses" className="text-gray-400 hover:text-primary transition-colors">Dasturlash va AI</a></li>
+                            <li><a href="/#courses" className="text-gray-400 hover:text-primary transition-colors">O'qituvchilar kursi</a></li>
                         </ul>
                     </div>
 
-                    <div className="footer-section">
-                        <h4>Mahsulotlar</h4>
-                        <ul className="footer-links">
-                            <li><a href="/#products">Arduino To'plamlari</a></li>
-                            <li><a href="/#products">LEGO WeDo 2.0</a></li>
-                            <li><a href="/#products">3D Modellar</a></li>
-                            <li><a href="/#products">Elektronika Qismlari</a></li>
+                    <div className="lg:col-span-3 md:col-span-1">
+                        <h4 className="text-white font-bold text-lg mb-6">Mahsulotlar</h4>
+                        <ul className="space-y-4">
+                            <li><a href="/#products" className="text-gray-400 hover:text-primary transition-colors">Arduino To'plamlari</a></li>
+                            <li><a href="/#products" className="text-gray-400 hover:text-primary transition-colors">LEGO WeDo 2.0</a></li>
+                            <li><a href="/#products" className="text-gray-400 hover:text-primary transition-colors">3D Modellar</a></li>
+                            <li><a href="/#products" className="text-gray-400 hover:text-primary transition-colors">Elektronika Qismlari</a></li>
                         </ul>
                     </div>
 
-                    <div className="footer-section">
-                        <h4>Kompaniya</h4>
-                        <ul className="footer-links">
-                            <li><a href="/#about">Biz haqimizda</a></li>
-                            <li><a href="/#contact">Aloqa</a></li>
-                            <li><a href="#">Hamkorlik</a></li>
-                            <li><a href="#">Yangiliklar</a></li>
-                            <li><a href="#">Vakansiyalar</a></li>
+                    <div className="lg:col-span-3 md:col-span-1">
+                        <h4 className="text-white font-bold text-lg mb-6">Kompaniya</h4>
+                        <ul className="space-y-4">
+                            <li><a href="/#about" className="text-gray-400 hover:text-primary transition-colors">Biz haqimizda</a></li>
+                            <li><a href="/#contact" className="text-gray-400 hover:text-primary transition-colors">Aloqa</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-primary transition-colors">Hamkorlik</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-primary transition-colors">Yangiliklar</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-primary transition-colors">Vakansiyalar</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div className="footer-bottom">
-                    <div>
-                        <p>
-                            &copy; {new Date().getFullYear()} Robotronix. Barcha huquqlar
-                            himoyalangan.
-                        </p>
-                    </div>
-                    <div>
-                        <a href="#">Maxfiylik siyosati</a>
-                        <span style={{ margin: '0 10px' }}>•</span>
-                        <a href="#">Foydalanish shartlari</a>
+                <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-gray-500 text-sm">
+                        &copy; {new Date().getFullYear()} Robotronix. Barcha huquqlar himoyalangan.
+                    </p>
+                    <div className="flex items-center gap-6">
+                        <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Maxfiylik siyosati</a>
+                        <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Foydalanish shartlari</a>
                     </div>
                 </div>
             </div>

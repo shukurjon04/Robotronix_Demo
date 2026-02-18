@@ -27,27 +27,45 @@ const FAQ = () => {
     }
 
     return (
-        <section className="faq" data-aos="fade-up">
-            <div className="container">
-                <div className="section-header">
-                    <h2 className="section-title">Tez-tez beriladigan savollar</h2>
-                    <p className="section-subtitle">
+        <section className="py-20 bg-dark relative">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16" data-aos="fade-up">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                        <span className="gradient-text">Tez-tez beriladigan savollar</span>
+                    </h2>
+                    <p className="text-gray-400 text-lg">
                         Eng mashhur savollar va javoblar
                     </p>
                 </div>
 
-                <div className="faq-list">
+                <div className="max-w-3xl mx-auto space-y-4">
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className={`faq-item ${activeIndex === index ? 'active' : ''}`}
+                            className={`bg-dark-card rounded-xl border transition-all duration-300 overflow-hidden ${activeIndex === index
+                                    ? 'border-primary/50 shadow-lg shadow-primary/10'
+                                    : 'border-gray-800 hover:border-gray-700'
+                                }`}
+                            data-aos="fade-up"
+                            data-aos-delay={(index + 1) * 50}
                         >
-                            <div className="faq-question" onClick={() => toggleFAQ(index)}>
-                                <h4>{faq.question}</h4>
-                                <i className="fas fa-chevron-down"></i>
-                            </div>
-                            <div className="faq-answer">
-                                <p>{faq.answer}</p>
+                            <button
+                                className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                                onClick={() => toggleFAQ(index)}
+                            >
+                                <span className={`text-lg font-semibold transition-colors ${activeIndex === index ? 'text-primary' : 'text-white'}`}>
+                                    {faq.question}
+                                </span>
+                                <i className={`fas fa-chevron-down text-gray-400 transition-transform duration-300 ${activeIndex === index ? 'rotate-180 text-primary' : ''}`}></i>
+                            </button>
+
+                            <div
+                                className={`transition-all duration-300 ease-in-out ${activeIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                                    }`}
+                            >
+                                <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-gray-800/50">
+                                    {faq.answer}
+                                </div>
                             </div>
                         </div>
                     ))}

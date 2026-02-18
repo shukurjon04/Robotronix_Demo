@@ -13,6 +13,7 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CartPage from './pages/CartPage'
 import CoursesPage from './pages/CoursesPage'
 import CourseDetailPage from './pages/CourseDetailPage'
+import DashboardPage from './pages/DashboardPage'
 
 function App() {
   const location = useLocation()
@@ -35,6 +36,7 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/courses/:id" element={<CourseDetailPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
           </Routes>
         </main>
         {!isAuthPath && <Footer />}
