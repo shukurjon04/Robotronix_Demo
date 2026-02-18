@@ -3,10 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 const LoginPage = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    })
+    const [formData, setFormData] = useState({ email: '', password: '' })
     const [error, setError] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const { login } = useAuth()
@@ -14,10 +11,7 @@ const LoginPage = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }))
+        setFormData(prev => ({ ...prev, [name]: value }))
         setError('')
     }
 
@@ -27,98 +21,68 @@ const LoginPage = () => {
         setError('')
 
         const result = await login(formData.email, formData.password)
-
         if (result.success) {
             navigate('/')
         } else {
             setError(result.error || 'Login failed. Please try again.')
         }
-
         setIsSubmitting(false)
     }
 
     return (
-        <section className="contact" style={{ minHeight: '100vh', paddingTop: '120px' }}>
-            <div className="container">
-                <div className="section-header" data-aos="fade-up">
-                    <h2 className="section-title">Kirish</h2>
-                    <p className="section-subtitle">
-                        Hisobingizga kiring
-                    </p>
+        <div className="min-h-screen bg-dark flex items-center justify-center px-4">
+            <div className="w-full max-w-md">
+                <div className="text-center mb-8">
+                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl text-white">
+                        <i className="fas fa-robot"></i>
+                    </div>
+                    <h2 className="text-2xl font-bold text-white mb-1">Admin Panel</h2>
+                    <p className="text-gray-500 text-sm">Tizimga kirish</p>
                 </div>
 
-                <div style={{ maxWidth: '500px', margin: '0 auto' }}>
-                    <div className="contact-form" data-aos="fade-up">
-                        <form onSubmit={handleSubmit}>
-                            {error && (
-                                <div style={{
-                                    background: 'rgba(255, 107, 53, 0.1)',
-                                    border: '1px solid var(--accent-color)',
-                                    borderRadius: '10px',
-                                    padding: '15px',
-                                    marginBottom: '25px',
-                                    color: 'var(--accent-color)'
-                                }}>
-                                    {error}
-                                </div>
-                            )}
-
-                            <div className="form-group">
-                                <label htmlFor="email" className="form-label">
-                                    Email *
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    className="form-input"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                />
+                <div className="card">
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        {error && (
+                            <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm flex items-center gap-2">
+                                <i className="fas fa-exclamation-circle"></i>
+                                {error}
                             </div>
+                        )}
 
-                            <div className="form-group">
-                                <label htmlFor="password" className="form-label">
-                                    Parol *
-                                </label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    className="form-input"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                        <div>
+                            <label htmlFor="email" className="label-field">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                className="input-field"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                            <button
-                                type="submit"
-                                className="btn-primary btn-full"
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? 'Kirish...' : 'Kirish'}
-                            </button>
+                        <div>
+                            <label htmlFor="password" className="label-field">Parol</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="input-field"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                            <p style={{
-                                textAlign: 'center',
-                                marginTop: '20px',
-                                color: 'var(--text-secondary)'
-                            }}>
-                                Hisobingiz yo'qmi?{' '}
-                                <Link
-                                    to="/register"
-                                    style={{ color: 'var(--primary-color)', textDecoration: 'none' }}
-                                >
-                                    Ro'yxatdan o'tish
-                                </Link>
-                            </p>
-                        </form>
-                    </div>
+                        <button type="submit" className="btn-primary w-full justify-center py-3" disabled={isSubmitting}>
+                            <i className={`fas ${isSubmitting ? 'fa-spinner fa-spin' : 'fa-sign-in-alt'}`}></i>
+                            {isSubmitting ? 'Kirish...' : 'Kirish'}
+                        </button>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 

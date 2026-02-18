@@ -1,30 +1,27 @@
-import React from 'react';
-
 const AdminTable = ({ headers, children }) => {
     return (
-        <div style={{
-            background: 'var(--card-bg)',
-            borderRadius: '15px',
-            overflowX: 'auto',
-            border: '1px solid var(--border-color)',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
-        }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text-primary)' }}>
-                <thead>
-                    <tr style={{ textAlign: 'left', borderBottom: '1px solid var(--border-color)', background: 'rgba(255,255,255,0.02)' }}>
-                        {headers.map((header, index) => (
-                            <th key={index} style={{ padding: '20px 15px', fontWeight: '600', color: 'var(--text-muted)', fontSize: '14px' }}>
-                                {header}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {children}
-                </tbody>
-            </table>
+        <div className="card overflow-hidden !p-0">
+            <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                    <thead>
+                        <tr className="border-b border-gray-800 bg-dark">
+                            {headers.map((header, index) => (
+                                <th
+                                    key={index}
+                                    className="text-left px-4 py-3 text-gray-400 font-medium text-xs uppercase tracking-wider"
+                                >
+                                    {header}
+                                </th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-800/50">
+                        {children}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    );
-};
+    )
+}
 
-export default AdminTable;
+export default AdminTable

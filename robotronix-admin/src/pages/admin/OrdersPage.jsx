@@ -6,9 +6,7 @@ const OrdersPage = () => {
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        fetchOrders()
-    }, [])
+    useEffect(() => { fetchOrders() }, [])
 
     const fetchOrders = async () => {
         setLoading(true)
@@ -31,54 +29,44 @@ const OrdersPage = () => {
         }
     }
 
-    const getStatusColor = (status) => {
+    const getStatusStyle = (status) => {
         switch (status) {
-            case 'PENDING': return '#ffcc00'
-            case 'CONFIRMED': return '#00ccff'
-            case 'SHIPPED': return '#8b5cf6'
-            case 'DELIVERED': return '#10b981'
-            case 'CANCELLED': return '#ff4d4d'
-            default: return 'var(--text-muted)'
+            case 'PENDING': return 'bg-yellow-500/10 text-yellow-400'
+            case 'CONFIRMED': return 'bg-secondary/10 text-secondary'
+            case 'SHIPPED': return 'bg-purple-500/10 text-purple-400'
+            case 'DELIVERED': return 'bg-emerald-500/10 text-emerald-400'
+            case 'CANCELLED': return 'bg-red-500/10 text-red-400'
+            default: return 'bg-gray-800 text-gray-400'
         }
     }
 
-    if (loading) return <div>Yuklanmoqda...</div>
+    if (loading) return (
+        <div className="flex items-center justify-center py-20">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    )
 
     return (
         <div>
-            <h2 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>Buyurtmalar</h2>
+            <h2 className="text-xl font-bold text-white mb-6">Buyurtmalar</h2>
             <AdminTable headers={['ID', 'Mijoz', 'Tel', 'Summa', 'Status', 'Sana', 'Amallar']}>
                 {orders.map(order => (
-                    <tr key={order.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                        <td style={{ padding: '15px' }}>#{order.id}</td>
-                        <td style={{ padding: '15px' }}>{order.user?.fullName}</td>
-                        <td style={{ padding: '15px' }}>{order.contactPhone}</td>
-                        <td style={{ padding: '15px' }}>{order.totalAmount.toLocaleString()} sum</td>
-                        <td style={{ padding: '15px' }}>
-                            <span style={{
-                                color: getStatusColor(order.status),
-                                background: `${getStatusColor(order.status)}20`,
-                                padding: '4px 10px',
-                                borderRadius: '15px',
-                                fontSize: '12px',
-                                fontWeight: '600'
-                            }}>
+                    <tr key={order.id} className="hover:bg-gray-800/30 transition-colors">
+                        <td className="px-4 py-3 text-gray-400">#{order.id}</td>
+                        <td className="px-4 py-3 text-white font-medium">{order.user?.fullName}</td>
+                        <td className="px-4 py-3 text-gray-300">{order.contactPhone}</td>
+                        <td className="px-4 py-3 text-gray-300 font-medium">{order.totalAmount.toLocaleString()} sum</td>
+                        <td className="px-4 py-3">
+                            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getStatusStyle(order.status)}`}>
                                 {order.status}
                             </span>
                         </td>
-                        <td style={{ padding: '15px' }}>{new Date(order.createdAt).toLocaleDateString()}</td>
-                        <td style={{ padding: '15px' }}>
+                        <td className="px-4 py-3 text-gray-400 text-sm">{new Date(order.createdAt).toLocaleDateString()}</td>
+                        <td className="px-4 py-3">
                             <select
                                 value={order.status}
                                 onChange={(e) => updateStatus(order.id, e.target.value)}
-                                style={{
-                                    background: 'var(--dark-bg)',
-                                    color: 'white',
-                                    border: '1px solid var(--border-color)',
-                                    padding: '5px',
-                                    borderRadius: '5px',
-                                    fontSize: '12px'
-                                }}
+                                className="input-field !w-auto !py-1.5 !px-2 text-xs"
                             >
                                 <option value="PENDING">Kutilmoqda</option>
                                 <option value="CONFIRMED">Tasdiqlandi</option>

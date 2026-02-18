@@ -17,6 +17,7 @@ const Dashboard = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [stats, setStats] = useState(null)
+    const [sidebarOpen, setSidebarOpen] = useState(false)
 
     useEffect(() => {
         const fetchStats = async () => {
@@ -44,235 +45,174 @@ const Dashboard = () => {
     ]
 
     const statCards = [
-        { label: 'Foydalanuvchilar', value: stats?.totalUsers || '0', icon: 'fas fa-users', color: '#0066ff' },
-        { label: 'Kurslar', value: stats?.totalCourses || '0', icon: 'fas fa-book', color: '#00ccff' },
-        { label: 'Mahsulotlar', value: stats?.totalProducts || '0', icon: 'fas fa-box', color: '#ff6b35' },
-        { label: 'Buyurtmalar', value: stats?.totalOrders || '0', icon: 'fas fa-shopping-cart', color: '#8b5cf6' },
-        { label: 'Xabarlar', value: stats?.unreadMessages || '0', icon: 'fas fa-envelope', color: '#10b981' }
+        { label: 'Foydalanuvchilar', value: stats?.totalUsers || '0', icon: 'fas fa-users', color: 'primary' },
+        { label: 'Kurslar', value: stats?.totalCourses || '0', icon: 'fas fa-book', color: 'secondary' },
+        { label: 'Mahsulotlar', value: stats?.totalProducts || '0', icon: 'fas fa-box', color: 'accent' },
+        { label: 'Buyurtmalar', value: stats?.totalOrders || '0', icon: 'fas fa-shopping-cart', color: 'purple' },
+        { label: 'Xabarlar', value: stats?.unreadMessages || '0', icon: 'fas fa-envelope', color: 'green' }
     ]
+
+    const colorMap = {
+        primary: { bg: 'bg-primary/10', text: 'text-primary' },
+        secondary: { bg: 'bg-secondary/10', text: 'text-secondary' },
+        accent: { bg: 'bg-accent/10', text: 'text-accent' },
+        purple: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
+        green: { bg: 'bg-emerald-500/10', text: 'text-emerald-400' }
+    }
 
     const handleLogout = () => {
         logout()
         navigate('/login')
     }
 
+    const isActive = (path) => {
+        if (path === '/admin') return location.pathname === '/' || location.pathname === '/admin'
+        return location.pathname === path
+    }
+
     return (
-        <section style={{ minHeight: '100vh', paddingTop: '40px', paddingBottom: '40px', background: 'var(--dark-bg)' }}>
-            <div className="container">
-                <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '30px' }}>
-                    {/* Sidebar */}
-                    <aside style={{
-                        background: 'var(--card-bg)',
-                        borderRadius: '15px',
-                        padding: '20px',
-                        border: '1px solid var(--border-color)',
-                        height: 'fit-content'
-                    }}>
-                        <div style={{ marginBottom: '20px', textAlign: 'center' }}>
-                            <div style={{
-                                width: '80px',
-                                height: '80px',
-                                background: 'var(--gradient-primary)',
-                                borderRadius: '50%',
-                                margin: '0 auto 15px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '2rem',
-                                color: 'white'
-                            }}>
-                                <i className="fas fa-user"></i>
-                            </div>
-                            <h3 style={{ color: 'var(--text-primary)', marginBottom: '5px' }}>
-                                {user?.fullName || 'Admin'}
-                            </h3>
-                            <span style={{
-                                color: 'var(--primary-color)',
-                                fontSize: '12px',
-                                background: 'rgba(0, 102, 255, 0.1)',
-                                padding: '4px 12px',
-                                borderRadius: '15px'
-                            }}>
-                                {user?.role || 'ADMIN'}
-                            </span>
-                        </div>
-
-                        <nav>
-                            {menuItems.map((item) => (
-                                <Link
-                                    key={item.path}
-                                    to={item.path}
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '12px',
-                                        padding: '12px 15px',
-                                        borderRadius: '10px',
-                                        color: location.pathname === item.path ? 'var(--primary-color)' : 'var(--text-secondary)',
-                                        textDecoration: 'none',
-                                        marginBottom: '5px',
-                                        background: location.pathname === item.path ? 'rgba(0, 102, 255, 0.1)' : 'transparent',
-                                        transition: 'all 0.2s ease'
-                                    }}
-                                >
-                                    <i className={item.icon} style={{ width: '20px' }}></i>
-                                    {item.label}
-                                </Link>
-                            ))}
-
-                            <hr style={{ border: 'none', borderTop: '1px solid var(--border-color)', margin: '15px 0' }} />
-
-                            <Link
-                                to="/"
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '12px',
-                                    padding: '12px 15px',
-                                    borderRadius: '10px',
-                                    color: 'var(--text-secondary)',
-                                    textDecoration: 'none',
-                                    marginBottom: '5px',
-                                    transition: 'all 0.2s ease'
-                                }}
-                            >
-                                <i className="fas fa-external-link-alt" style={{ width: '20px' }}></i>
-                                Saytga qaytish
-                            </Link>
-
-                            <button
-                                onClick={handleLogout}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '12px',
-                                    padding: '12px 15px',
-                                    borderRadius: '10px',
-                                    color: '#ff4d4d',
-                                    background: 'transparent',
-                                    border: 'none',
-                                    width: '100%',
-                                    cursor: 'pointer',
-                                    fontSize: '16px',
-                                    textAlign: 'left',
-                                    transition: 'all 0.2s ease'
-                                }}
-                            >
-                                <i className="fas fa-sign-out-alt" style={{ width: '20px' }}></i>
-                                Chiqish
-                            </button>
-                        </nav>
-                    </aside>
-
-                    {/* Main Content */}
-                    <main>
-                        <Routes>
-                            <Route path="/" element={
-                                <div>
-                                    <h2 style={{
-                                        color: 'var(--text-primary)',
-                                        marginBottom: '30px',
-                                        fontSize: '1.8rem'
-                                    }}>
-                                        Dashboard
-                                    </h2>
-
-                                    {/* Stats Grid */}
-                                    <div style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                                        gap: '20px',
-                                        marginBottom: '30px'
-                                    }}>
-                                        {statCards.map((stat, index) => (
-                                            <div
-                                                key={index}
-                                                style={{
-                                                    background: 'var(--card-bg)',
-                                                    borderRadius: '15px',
-                                                    padding: '25px',
-                                                    border: '1px solid var(--border-color)'
-                                                }}
-                                            >
-                                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                    <div>
-                                                        <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '8px' }}>
-                                                            {stat.label}
-                                                        </p>
-                                                        <h3 style={{ color: 'var(--text-primary)', fontSize: '1.8rem' }}>
-                                                            {stat.value}
-                                                        </h3>
-                                                    </div>
-                                                    <div style={{
-                                                        width: '50px',
-                                                        height: '50px',
-                                                        background: `${stat.color}20`,
-                                                        borderRadius: '12px',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center'
-                                                    }}>
-                                                        <i className={stat.icon} style={{ color: stat.color, fontSize: '1.2rem' }}></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Recent Activity placeholder */}
-                                    <div style={{
-                                        background: 'var(--card-bg)',
-                                        borderRadius: '15px',
-                                        padding: '25px',
-                                        border: '1px solid var(--border-color)'
-                                    }}>
-                                        <h3 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>
-                                            Xush kelibsiz!
-                                        </h3>
-                                        <p style={{ color: 'var(--text-muted)', padding: '20px' }}>
-                                            Chap tomondagi menu orqali saytni boshqarishingiz mumkin.
-                                        </p>
-                                    </div>
-                                </div>
-                            } />
-                            <Route path="/users" element={<UsersPage />} />
-                            <Route path="/courses" element={<CoursesPage />} />
-                            <Route path="/products" element={<ProductsPage />} />
-                            <Route path="/orders" element={<OrdersPage />} />
-                            <Route path="/enrollments" element={<EnrollmentsPage />} />
-                            <Route path="/messages" element={
-                                <div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                                        <h2 style={{ color: 'var(--text-primary)' }}>Xabarlar</h2>
-                                        <a
-                                            href={`${import.meta.env.VITE_API_URL || '/api'}/admin/leads/export`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            style={{
-                                                background: '#10b981',
-                                                color: 'white',
-                                                textDecoration: 'none',
-                                                padding: '10px 20px',
-                                                borderRadius: '8px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '8px'
-                                            }}
-                                        >
-                                            <i className="fas fa-file-csv"></i> Eksport
-                                        </a>
-                                    </div>
-                                    <MessagesPage />
-                                </div>
-                            } />
-                            <Route path="/banners" element={<BannersPage />} />
-                            <Route path="/seo" element={<SeoMetaPage />} />
-                            <Route path="/audit" element={<AuditLogsPage />} />
-                        </Routes>
-                    </main>
-                </div>
+        <div className="min-h-screen bg-dark">
+            {/* Mobile Header */}
+            <div className="lg:hidden flex items-center justify-between p-4 bg-dark-card border-b border-gray-800">
+                <h1 className="text-lg font-bold text-white">
+                    <i className="fas fa-robot text-primary mr-2"></i>Admin
+                </h1>
+                <button
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    className="text-white text-xl p-2"
+                >
+                    <i className={`fas ${sidebarOpen ? 'fa-times' : 'fa-bars'}`}></i>
+                </button>
             </div>
-        </section>
+
+            <div className="flex">
+                {/* Sidebar */}
+                <aside className={`
+                    fixed lg:sticky top-0 left-0 h-screen w-64 bg-dark-card border-r border-gray-800 p-5 overflow-y-auto z-50
+                    transition-transform duration-300 lg:translate-x-0
+                    ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+                `}>
+                    {/* Profile */}
+                    <div className="text-center mb-6 pt-2">
+                        <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-3 text-2xl text-white">
+                            <i className="fas fa-user"></i>
+                        </div>
+                        <h3 className="text-white font-semibold text-sm">{user?.fullName || 'Admin'}</h3>
+                        <span className="inline-block mt-1 text-xs text-primary bg-primary/10 px-3 py-1 rounded-full">
+                            {user?.role || 'ADMIN'}
+                        </span>
+                    </div>
+
+                    {/* Navigation */}
+                    <nav className="space-y-1">
+                        {menuItems.map((item) => (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                onClick={() => setSidebarOpen(false)}
+                                className={`
+                                    flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200
+                                    ${isActive(item.path)
+                                        ? 'bg-primary/10 text-primary font-medium'
+                                        : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                                    }
+                                `}
+                            >
+                                <i className={`${item.icon} w-5 text-center`}></i>
+                                {item.label}
+                            </Link>
+                        ))}
+
+                        <div className="border-t border-gray-800 my-3"></div>
+
+                        <Link
+                            to="/"
+                            className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all"
+                        >
+                            <i className="fas fa-external-link-alt w-5 text-center"></i>
+                            Saytga qaytish
+                        </Link>
+
+                        <button
+                            onClick={handleLogout}
+                            className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-500/10 transition-all w-full text-left"
+                        >
+                            <i className="fas fa-sign-out-alt w-5 text-center"></i>
+                            Chiqish
+                        </button>
+                    </nav>
+                </aside>
+
+                {/* Overlay for mobile */}
+                {sidebarOpen && (
+                    <div
+                        className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+                        onClick={() => setSidebarOpen(false)}
+                    ></div>
+                )}
+
+                {/* Main Content */}
+                <main className="flex-1 min-h-screen p-6 lg:p-8">
+                    <Routes>
+                        <Route path="/" element={
+                            <div>
+                                <h2 className="text-2xl font-bold text-white mb-6">Dashboard</h2>
+
+                                {/* Stats Grid */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
+                                    {statCards.map((stat, index) => (
+                                        <div key={index} className="card flex items-center justify-between">
+                                            <div>
+                                                <p className="text-gray-500 text-xs mb-1">{stat.label}</p>
+                                                <h3 className="text-2xl font-bold text-white">{stat.value}</h3>
+                                            </div>
+                                            <div className={`w-11 h-11 ${colorMap[stat.color].bg} rounded-xl flex items-center justify-center`}>
+                                                <i className={`${stat.icon} ${colorMap[stat.color].text}`}></i>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Welcome Card */}
+                                <div className="card">
+                                    <h3 className="text-white font-semibold mb-3">
+                                        <i className="fas fa-hand-wave text-primary mr-2"></i>
+                                        Xush kelibsiz!
+                                    </h3>
+                                    <p className="text-gray-400 text-sm">
+                                        Chap tomondagi menu orqali saytni boshqarishingiz mumkin.
+                                    </p>
+                                </div>
+                            </div>
+                        } />
+                        <Route path="/users" element={<UsersPage />} />
+                        <Route path="/courses" element={<CoursesPage />} />
+                        <Route path="/products" element={<ProductsPage />} />
+                        <Route path="/orders" element={<OrdersPage />} />
+                        <Route path="/enrollments" element={<EnrollmentsPage />} />
+                        <Route path="/messages" element={
+                            <div>
+                                <div className="flex justify-between items-center mb-6">
+                                    <h2 className="text-xl font-bold text-white">Xabarlar</h2>
+                                    <a
+                                        href={`${import.meta.env.VITE_API_URL || '/api'}/admin/leads/export`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-lg hover:bg-emerald-500/20 transition-colors text-sm"
+                                    >
+                                        <i className="fas fa-file-csv"></i> Eksport
+                                    </a>
+                                </div>
+                                <MessagesPage />
+                            </div>
+                        } />
+                        <Route path="/banners" element={<BannersPage />} />
+                        <Route path="/seo" element={<SeoMetaPage />} />
+                        <Route path="/audit" element={<AuditLogsPage />} />
+                    </Routes>
+                </main>
+            </div>
+        </div>
     )
 }
 

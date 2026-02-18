@@ -6,9 +6,7 @@ const MessagesPage = () => {
     const [messages, setMessages] = useState([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        fetchMessages()
-    }, [])
+    useEffect(() => { fetchMessages() }, [])
 
     const fetchMessages = async () => {
         setLoading(true)
@@ -41,38 +39,49 @@ const MessagesPage = () => {
         }
     }
 
-    if (loading) return <div>Yuklanmoqda...</div>
+    if (loading) return (
+        <div className="flex items-center justify-center py-20">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    )
 
     return (
         <div>
             <AdminTable headers={['ID', 'Ism', 'Telefon', 'Kurs', 'Xabar', 'Holat', 'Sana', 'Amallar']}>
                 {messages.map(m => (
-                    <tr key={m.id} style={{ borderBottom: '1px solid var(--border-color)', opacity: m.read ? 0.6 : 1 }}>
-                        <td style={{ padding: '15px' }}>{m.id}</td>
-                        <td style={{ padding: '15px' }}>{m.name}</td>
-                        <td style={{ padding: '15px' }}>{m.phone}</td>
-                        <td style={{ padding: '15px' }}>{m.course || '-'}</td>
-                        <td style={{ padding: '15px' }}>
-                            <div style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={m.message}>
+                    <tr key={m.id} className={`hover:bg-gray-800/30 transition-colors ${m.read ? 'opacity-60' : ''}`}>
+                        <td className="px-4 py-3 text-gray-400">{m.id}</td>
+                        <td className="px-4 py-3 text-white font-medium">{m.name}</td>
+                        <td className="px-4 py-3 text-gray-300">{m.phone}</td>
+                        <td className="px-4 py-3 text-gray-300">{m.course || '—'}</td>
+                        <td className="px-4 py-3">
+                            <div className="max-w-[200px] truncate text-gray-300 text-sm" title={m.message}>
                                 {m.message}
                             </div>
                         </td>
-                        <td style={{ padding: '15px' }}>
-                            {m.read ?
-                                <span style={{ color: '#10b981', fontSize: '12px' }}><i className="fas fa-check-double"></i> O'qildi</span> :
-                                <span style={{ color: '#ffcc00', fontSize: '12px' }}><i className="fas fa-envelope"></i> Yangi</span>
-                            }
-                        </td>
-                        <td style={{ padding: '15px' }}>{new Date(m.createdAt).toLocaleDateString()}</td>
-                        <td style={{ padding: '15px' }}>
-                            {!m.read && (
-                                <button onClick={() => markAsRead(m.id)} style={{ marginRight: '10px', color: '#10b981', background: 'none', border: 'none', cursor: 'pointer' }} title="O'qildi deb belgilash">
-                                    <i className="fas fa-check"></i>
-                                </button>
+                        <td className="px-4 py-3">
+                            {m.read ? (
+                                <span className="text-emerald-400 text-xs flex items-center gap-1">
+                                    <i className="fas fa-check-double"></i> O'qildi
+                                </span>
+                            ) : (
+                                <span className="text-yellow-400 text-xs flex items-center gap-1">
+                                    <i className="fas fa-envelope"></i> Yangi
+                                </span>
                             )}
-                            <button onClick={() => handleDelete(m.id)} style={{ color: '#ff4d4d', background: 'none', border: 'none', cursor: 'pointer' }} title="O'chirish">
-                                <i className="fas fa-trash"></i>
-                            </button>
+                        </td>
+                        <td className="px-4 py-3 text-gray-400 text-sm">{new Date(m.createdAt).toLocaleDateString()}</td>
+                        <td className="px-4 py-3">
+                            <div className="flex items-center gap-2">
+                                {!m.read && (
+                                    <button onClick={() => markAsRead(m.id)} className="p-2 rounded-lg text-emerald-400 hover:bg-emerald-500/10 transition-colors" title="O'qildi deb belgilash">
+                                        <i className="fas fa-check"></i>
+                                    </button>
+                                )}
+                                <button onClick={() => handleDelete(m.id)} className="p-2 rounded-lg text-red-400 hover:bg-red-500/10 transition-colors" title="O'chirish">
+                                    <i className="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}

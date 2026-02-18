@@ -20,37 +20,29 @@ const AuditLogsPage = () => {
         fetchLogs();
     }, []);
 
-    const formatDetails = (details) => {
-        if (!details) return '-';
-        return <span style={{ fontSize: '13px' }}>{details}</span>;
-    };
-
-    if (loading) return <div>Audit jurnali yuklanmoqda...</div>;
+    if (loading) return (
+        <div className="flex items-center justify-center py-20">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    );
 
     return (
         <div>
-            <h2 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>Audit Jurnali</h2>
+            <h2 className="text-xl font-bold text-white mb-6">Audit Jurnali</h2>
             <AdminTable headers={['Vaqt', 'Admin', 'Amal', 'Resurs', 'Details']}>
                 {logs.map(log => (
-                    <tr key={log.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                        <td style={{ padding: '15px' }}>{new Date(log.timestamp).toLocaleString()}</td>
-                        <td style={{ padding: '15px' }}>{log.adminEmail}</td>
-                        <td style={{ padding: '15px' }}>
-                            <span style={{
-                                background: 'rgba(0, 102, 255, 0.1)',
-                                color: 'var(--primary-color)',
-                                padding: '4px 10px',
-                                borderRadius: '5px',
-                                fontSize: '12px',
-                                fontWeight: '600'
-                            }}>
+                    <tr key={log.id} className="hover:bg-gray-800/30 transition-colors">
+                        <td className="px-4 py-3 text-gray-400 text-sm whitespace-nowrap">{new Date(log.timestamp).toLocaleString()}</td>
+                        <td className="px-4 py-3 text-gray-300">{log.adminEmail}</td>
+                        <td className="px-4 py-3">
+                            <span className="text-xs font-semibold px-2.5 py-1 rounded bg-primary/10 text-primary">
                                 {log.action}
                             </span>
                         </td>
-                        <td style={{ padding: '15px' }}>
+                        <td className="px-4 py-3 text-gray-300">
                             {log.resourceType} {log.resourceId && `(#${log.resourceId})`}
                         </td>
-                        <td style={{ padding: '15px' }}>{formatDetails(log.details)}</td>
+                        <td className="px-4 py-3 text-gray-400 text-sm">{log.details || '—'}</td>
                     </tr>
                 ))}
             </AdminTable>

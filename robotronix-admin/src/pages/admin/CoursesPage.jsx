@@ -10,18 +10,10 @@ const CoursesPage = () => {
     const [uploading, setUploading] = useState(false)
 
     const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        ageGroup: '',
-        duration: '',
-        price: '',
-        imageUrl: '',
-        category: 'kids'
+        title: '', description: '', ageGroup: '', duration: '', price: '', imageUrl: '', category: 'kids'
     })
 
-    useEffect(() => {
-        fetchCourses()
-    }, [])
+    useEffect(() => { fetchCourses() }, [])
 
     const fetchCourses = async () => {
         setLoading(true)
@@ -62,13 +54,11 @@ const CoursesPage = () => {
     const handleImageUpload = async (e) => {
         const file = e.target.files[0]
         if (!file) return
-
-        const formData = new FormData()
-        formData.append('file', file)
+        const data = new FormData()
+        data.append('file', file)
         setUploading(true)
-
         try {
-            const response = await api.post('/admin/files/upload', formData, {
+            const response = await api.post('/admin/files/upload', data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             })
             setFormData(prev => ({ ...prev, imageUrl: response.data.url }))
@@ -89,42 +79,30 @@ const CoursesPage = () => {
             }
             setShowModal(false)
             fetchCourses()
-            setFormData({
-                title: '',
-                description: '',
-                ageGroup: '',
-                duration: '',
-                price: '',
-                imageUrl: '',
-                category: 'kids'
-            })
-            setEditingCourse(null)
+            resetForm()
         } catch (error) {
             alert('Saqlashda xatolik yuz berdi')
         }
     }
 
-    if (loading) return <div>Yuklanmoqda...</div>
+    const resetForm = () => {
+        setFormData({ title: '', description: '', ageGroup: '', duration: '', price: '', imageUrl: '', category: 'kids' })
+        setEditingCourse(null)
+    }
+
+    if (loading) return (
+        <div className="flex items-center justify-center py-20">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    )
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2 style={{ color: 'var(--text-primary)' }}>Kurslar</h2>
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-white">Kurslar</h2>
                 <button
-                    onClick={() => {
-                        setEditingCourse(null)
-                        setFormData({ title: '', description: '', ageGroup: '', duration: '', price: '', imageUrl: '', category: 'kids' })
-                        setShowModal(true)
-                    }}
-                    style={{
-                        background: 'var(--gradient-primary)',
-                        color: 'white',
-                        border: 'none',
-                        padding: '10px 20px',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        fontWeight: '600'
-                    }}
+                    onClick={() => { resetForm(); setShowModal(true) }}
+                    className="btn-primary"
                 >
                     <i className="fas fa-plus"></i> Yangi kurs
                 </button>
@@ -132,119 +110,80 @@ const CoursesPage = () => {
 
             <AdminTable headers={['ID', 'Rasm', 'Nomi', 'Narxi', 'Kategoriya', 'Amallar']}>
                 {courses.map(c => (
-                    <tr key={c.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                        <td style={{ padding: '15px' }}>{c.id}</td>
-                        <td style={{ padding: '15px' }}>
-                            <img src={c.imageUrl} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }} />
+                    <tr key={c.id} className="hover:bg-gray-800/30 transition-colors">
+                        <td className="px-4 py-3 text-gray-400">{c.id}</td>
+                        <td className="px-4 py-3">
+                            <img src={c.imageUrl} alt="" className="w-10 h-10 object-cover rounded-lg bg-gray-800" />
                         </td>
-                        <td style={{ padding: '15px' }}>{c.title}</td>
-                        <td style={{ padding: '15px' }}>{(c.price || 0).toLocaleString()} sum</td>
-                        <td style={{ padding: '15px' }}>{c.category === 'kids' ? 'Bolalar' : 'O\'qituvchilar'}</td>
-                        <td style={{ padding: '15px' }}>
-                            <button onClick={() => handleEdit(c)} style={{ marginRight: '10px', color: '#00ccff', background: 'none', border: 'none', cursor: 'pointer' }}>
-                                <i className="fas fa-edit"></i>
-                            </button>
-                            <button onClick={() => handleDelete(c.id)} style={{ color: '#ff4d4d', background: 'none', border: 'none', cursor: 'pointer' }}>
-                                <i className="fas fa-trash"></i>
-                            </button>
+                        <td className="px-4 py-3 text-white font-medium">{c.title}</td>
+                        <td className="px-4 py-3 text-gray-300">{(c.price || 0).toLocaleString()} sum</td>
+                        <td className="px-4 py-3">
+                            <span className={`text-xs px-2 py-1 rounded-full ${c.category === 'kids' ? 'bg-blue-500/10 text-blue-400' : 'bg-purple-500/10 text-purple-400'}`}>
+                                {c.category === 'kids' ? 'Bolalar' : "O'qituvchilar"}
+                            </span>
+                        </td>
+                        <td className="px-4 py-3">
+                            <div className="flex items-center gap-2">
+                                <button onClick={() => handleEdit(c)} className="p-2 rounded-lg text-secondary hover:bg-secondary/10 transition-colors">
+                                    <i className="fas fa-edit"></i>
+                                </button>
+                                <button onClick={() => handleDelete(c.id)} className="p-2 rounded-lg text-red-400 hover:bg-red-500/10 transition-colors">
+                                    <i className="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}
             </AdminTable>
 
+            {/* Modal */}
             {showModal && (
-                <div style={{
-                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
-                }}>
-                    <div style={{
-                        background: 'var(--card-bg)', padding: '30px', borderRadius: '15px', width: '500px', maxHeight: '90vh', overflowY: 'auto'
-                    }}>
-                        <h3 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="card w-full max-w-lg max-h-[90vh] overflow-y-auto">
+                        <h3 className="text-lg font-bold text-white mb-5">
                             {editingCourse ? 'Kursni tahrirlash' : 'Yangi kurs qo\'shish'}
                         </h3>
-                        <form onSubmit={handleSubmit}>
-                            <div style={{ marginBottom: '15px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Nomi</label>
-                                <input
-                                    type="text"
-                                    value={formData.title}
-                                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                    required
-                                    style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }}
-                                />
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div>
+                                <label className="label-field">Nomi</label>
+                                <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} required className="input-field" />
                             </div>
-                            <div style={{ marginBottom: '15px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Tavsif</label>
-                                <textarea
-                                    value={formData.description}
-                                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                    style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white', minHeight: '100px' }}
-                                />
+                            <div>
+                                <label className="label-field">Tavsif</label>
+                                <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="input-field min-h-[80px] resize-y" />
                             </div>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+                            <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Yosh toifasi</label>
-                                    <input
-                                        type="text"
-                                        value={formData.ageGroup}
-                                        onChange={(e) => setFormData({ ...formData, ageGroup: e.target.value })}
-                                        style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }}
-                                    />
+                                    <label className="label-field">Yosh toifasi</label>
+                                    <input type="text" value={formData.ageGroup} onChange={(e) => setFormData({ ...formData, ageGroup: e.target.value })} className="input-field" />
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Davomiyligi</label>
-                                    <input
-                                        type="text"
-                                        value={formData.duration}
-                                        onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                                        style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }}
-                                    />
+                                    <label className="label-field">Davomiyligi</label>
+                                    <input type="text" value={formData.duration} onChange={(e) => setFormData({ ...formData, duration: e.target.value })} className="input-field" />
                                 </div>
                             </div>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+                            <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Narxi</label>
-                                    <input
-                                        type="number"
-                                        value={formData.price}
-                                        onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                                        required
-                                        style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }}
-                                    />
+                                    <label className="label-field">Narxi</label>
+                                    <input type="number" value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} required className="input-field" />
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Kategoriya</label>
-                                    <select
-                                        value={formData.category}
-                                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                        style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }}
-                                    >
+                                    <label className="label-field">Kategoriya</label>
+                                    <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} className="input-field">
                                         <option value="kids">Bolalar uchun</option>
                                         <option value="teachers">O'qituvchilar uchun</option>
                                     </select>
                                 </div>
                             </div>
-                            <div style={{ marginBottom: '20px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Rasm</label>
-                                <input type="file" onChange={handleImageUpload} style={{ marginBottom: '10px' }} />
-                                {uploading && <p style={{ fontSize: '12px', color: 'var(--primary-color)' }}>Yuklanmoqda...</p>}
-                                {formData.imageUrl && <img src={formData.imageUrl} alt="Preview" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px' }} />}
+                            <div>
+                                <label className="label-field">Rasm</label>
+                                <input type="file" onChange={handleImageUpload} className="text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary/10 file:text-primary file:cursor-pointer" />
+                                {uploading && <p className="text-xs text-primary mt-1">Yuklanmoqda...</p>}
+                                {formData.imageUrl && <img src={formData.imageUrl} alt="Preview" className="w-20 h-20 object-cover rounded-lg mt-2" />}
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
-                                <button
-                                    type="button"
-                                    onClick={() => setShowModal(false)}
-                                    style={{ background: 'transparent', color: 'white', border: '1px solid var(--border-color)', padding: '10px 20px', borderRadius: '8px' }}
-                                >
-                                    Bekor qilish
-                                </button>
-                                <button
-                                    type="submit"
-                                    style={{ background: 'var(--gradient-primary)', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: '600' }}
-                                >
-                                    Saqlash
-                                </button>
+                            <div className="flex justify-end gap-3 pt-2">
+                                <button type="button" onClick={() => setShowModal(false)} className="btn-outline">Bekor qilish</button>
+                                <button type="submit" className="btn-primary">Saqlash</button>
                             </div>
                         </form>
                     </div>

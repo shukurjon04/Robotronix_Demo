@@ -8,22 +8,13 @@ const ProductsPage = () => {
     const [showModal, setShowModal] = useState(false)
     const [editingProduct, setEditingProduct] = useState(null)
     const [uploading, setUploading] = useState(false)
-
-    const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        price: '',
-        oldPrice: '',
-        imageUrl: '',
-        badge: '',
-        features: []
-    })
-
     const [featureInput, setFeatureInput] = useState('')
 
-    useEffect(() => {
-        fetchProducts()
-    }, [])
+    const [formData, setFormData] = useState({
+        title: '', description: '', price: '', oldPrice: '', imageUrl: '', badge: '', features: []
+    })
+
+    useEffect(() => { fetchProducts() }, [])
 
     const fetchProducts = async () => {
         setLoading(true)
@@ -40,12 +31,9 @@ const ProductsPage = () => {
     const handleEdit = (product) => {
         setEditingProduct(product)
         setFormData({
-            title: product.title,
-            description: product.description || '',
-            price: product.price,
-            oldPrice: product.oldPrice || '',
-            imageUrl: product.imageUrl || '',
-            badge: product.badge || '',
+            title: product.title, description: product.description || '',
+            price: product.price, oldPrice: product.oldPrice || '',
+            imageUrl: product.imageUrl || '', badge: product.badge || '',
             features: product.features || []
         })
         setShowModal(true)
@@ -64,11 +52,9 @@ const ProductsPage = () => {
     const handleImageUpload = async (e) => {
         const file = e.target.files[0]
         if (!file) return
-
         const data = new FormData()
         data.append('file', file)
         setUploading(true)
-
         try {
             const response = await api.post('/admin/files/upload', data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
@@ -106,101 +92,111 @@ const ProductsPage = () => {
         }
     }
 
-    if (loading) return <div>Yuklanmoqda...</div>
+    const resetForm = () => {
+        setFormData({ title: '', description: '', price: '', oldPrice: '', imageUrl: '', badge: '', features: [] })
+        setEditingProduct(null)
+        setFeatureInput('')
+    }
+
+    if (loading) return (
+        <div className="flex items-center justify-center py-20">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    )
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2 style={{ color: 'var(--text-primary)' }}>Mahsulotlar</h2>
-                <button
-                    onClick={() => {
-                        setEditingProduct(null)
-                        setFormData({ title: '', description: '', price: '', oldPrice: '', imageUrl: '', badge: '', features: [] })
-                        setShowModal(true)
-                    }}
-                    style={{ background: 'var(--gradient-primary)', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}
-                >
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-white">Mahsulotlar</h2>
+                <button onClick={() => { resetForm(); setShowModal(true) }} className="btn-primary">
                     <i className="fas fa-plus"></i> Yangi mahsulot
                 </button>
             </div>
 
             <AdminTable headers={['ID', 'Rasm', 'Nomi', 'Narxi', 'Badge', 'Amallar']}>
                 {products.map(p => (
-                    <tr key={p.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                        <td style={{ padding: '15px' }}>{p.id}</td>
-                        <td style={{ padding: '15px' }}>
-                            <img src={p.imageUrl} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }} />
+                    <tr key={p.id} className="hover:bg-gray-800/30 transition-colors">
+                        <td className="px-4 py-3 text-gray-400">{p.id}</td>
+                        <td className="px-4 py-3">
+                            <img src={p.imageUrl} alt="" className="w-10 h-10 object-cover rounded-lg bg-gray-800" />
                         </td>
-                        <td style={{ padding: '15px' }}>{p.title}</td>
-                        <td style={{ padding: '15px' }}>{p.price.toLocaleString()} sum</td>
-                        <td style={{ padding: '15px' }}>{p.badge || '-'}</td>
-                        <td style={{ padding: '15px' }}>
-                            <button onClick={() => handleEdit(p)} style={{ marginRight: '10px', color: '#00ccff', background: 'none', border: 'none', cursor: 'pointer' }}>
-                                <i className="fas fa-edit"></i>
-                            </button>
-                            <button onClick={() => handleDelete(p.id)} style={{ color: '#ff4d4d', background: 'none', border: 'none', cursor: 'pointer' }}>
-                                <i className="fas fa-trash"></i>
-                            </button>
+                        <td className="px-4 py-3 text-white font-medium">{p.title}</td>
+                        <td className="px-4 py-3 text-gray-300">{(p.price || 0).toLocaleString()} sum</td>
+                        <td className="px-4 py-3">
+                            {p.badge ? (
+                                <span className="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400">{p.badge}</span>
+                            ) : <span className="text-gray-600">—</span>}
+                        </td>
+                        <td className="px-4 py-3">
+                            <div className="flex items-center gap-2">
+                                <button onClick={() => handleEdit(p)} className="p-2 rounded-lg text-secondary hover:bg-secondary/10 transition-colors">
+                                    <i className="fas fa-edit"></i>
+                                </button>
+                                <button onClick={() => handleDelete(p.id)} className="p-2 rounded-lg text-red-400 hover:bg-red-500/10 transition-colors">
+                                    <i className="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}
             </AdminTable>
 
+            {/* Modal */}
             {showModal && (
-                <div style={{
-                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
-                }}>
-                    <div style={{ background: 'var(--card-bg)', padding: '30px', borderRadius: '15px', width: '500px', maxHeight: '90vh', overflowY: 'auto' }}>
-                        <h3 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="card w-full max-w-lg max-h-[90vh] overflow-y-auto">
+                        <h3 className="text-lg font-bold text-white mb-5">
                             {editingProduct ? 'Mahsulotni tahrirlash' : 'Yangi mahsulot'}
                         </h3>
-                        <form onSubmit={handleSubmit}>
-                            <div style={{ marginBottom: '15px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Nomi</label>
-                                <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }} />
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div>
+                                <label className="label-field">Nomi</label>
+                                <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} required className="input-field" />
                             </div>
-                            <div style={{ marginBottom: '15px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Tavsif</label>
-                                <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white', minHeight: '80px' }} />
+                            <div>
+                                <label className="label-field">Tavsif</label>
+                                <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="input-field min-h-[80px] resize-y" />
                             </div>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+                            <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Narxi</label>
-                                    <input type="number" value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }} />
+                                    <label className="label-field">Narxi</label>
+                                    <input type="number" value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} required className="input-field" />
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Eski narxi</label>
-                                    <input type="number" value={formData.oldPrice} onChange={(e) => setFormData({ ...formData, oldPrice: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }} />
+                                    <label className="label-field">Eski narxi</label>
+                                    <input type="number" value={formData.oldPrice} onChange={(e) => setFormData({ ...formData, oldPrice: e.target.value })} className="input-field" />
                                 </div>
                             </div>
-                            <div style={{ marginBottom: '15px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Badge (e.g. "NEW", "HOT")</label>
-                                <input type="text" value={formData.badge} onChange={(e) => setFormData({ ...formData, badge: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }} />
+                            <div>
+                                <label className="label-field">Badge (e.g. "NEW", "HOT")</label>
+                                <input type="text" value={formData.badge} onChange={(e) => setFormData({ ...formData, badge: e.target.value })} className="input-field" />
                             </div>
-                            <div style={{ marginBottom: '15px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Xususiyatlar</label>
-                                <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-                                    <input type="text" value={featureInput} onChange={(e) => setFeatureInput(e.target.value)} style={{ flex: 1, padding: '10px', borderRadius: '8px', background: 'var(--dark-bg)', border: '1px solid var(--border-color)', color: 'white' }} />
-                                    <button type="button" onClick={addFeature} style={{ padding: '10px', borderRadius: '8px', background: 'var(--primary-color)', border: 'none', color: 'white' }}>Qo'shish</button>
+                            <div>
+                                <label className="label-field">Xususiyatlar</label>
+                                <div className="flex gap-2 mb-2">
+                                    <input type="text" value={featureInput} onChange={(e) => setFeatureInput(e.target.value)} className="input-field" placeholder="Xususiyat qo'shing..." />
+                                    <button type="button" onClick={addFeature} className="btn-primary !px-4 shrink-0">
+                                        <i className="fas fa-plus"></i>
+                                    </button>
                                 </div>
-                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+                                <div className="flex flex-wrap gap-2">
                                     {formData.features.map((f, i) => (
-                                        <span key={i} style={{ background: 'rgba(255,255,255,0.1)', padding: '4px 10px', borderRadius: '15px', fontSize: '12px', color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                            {f} <i className="fas fa-times" onClick={() => removeFeature(i)} style={{ cursor: 'pointer', fontSize: '10px' }}></i>
+                                        <span key={i} className="inline-flex items-center gap-1.5 bg-gray-800 text-gray-300 text-xs px-3 py-1.5 rounded-full">
+                                            {f}
+                                            <i className="fas fa-times text-gray-500 hover:text-red-400 cursor-pointer" onClick={() => removeFeature(i)}></i>
                                         </span>
                                     ))}
                                 </div>
                             </div>
-                            <div style={{ marginBottom: '20px' }}>
-                                <label style={{ display: 'block', color: 'var(--text-muted)', marginBottom: '5px' }}>Rasm</label>
-                                <input type="file" onChange={handleImageUpload} style={{ marginBottom: '10px' }} />
-                                {uploading && <p style={{ fontSize: '12px', color: 'var(--primary-color)' }}>Yuklanmoqda...</p>}
-                                {formData.imageUrl && <img src={formData.imageUrl} alt="Preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px' }} />}
+                            <div>
+                                <label className="label-field">Rasm</label>
+                                <input type="file" onChange={handleImageUpload} className="text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary/10 file:text-primary file:cursor-pointer" />
+                                {uploading && <p className="text-xs text-primary mt-1">Yuklanmoqda...</p>}
+                                {formData.imageUrl && <img src={formData.imageUrl} alt="Preview" className="w-16 h-16 object-cover rounded-lg mt-2" />}
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
-                                <button type="button" onClick={() => setShowModal(false)} style={{ background: 'transparent', color: 'white', border: '1px solid var(--border-color)', padding: '10px 20px', borderRadius: '8px' }}>Bekor qilish</button>
-                                <button type="submit" style={{ background: 'var(--gradient-primary)', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: '600' }}>Saqlash</button>
+                            <div className="flex justify-end gap-3 pt-2">
+                                <button type="button" onClick={() => setShowModal(false)} className="btn-outline">Bekor qilish</button>
+                                <button type="submit" className="btn-primary">Saqlash</button>
                             </div>
                         </form>
                     </div>
